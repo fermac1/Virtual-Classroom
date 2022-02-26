@@ -1,0 +1,46 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.container{
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+.form-tag{
+    display: inline-block;
+    background: #d8dee9;
+    padding: 50px 50px 10px ;
+}
+h4{
+    color: #0a3c49;
+}
+.inputBox{
+    margin: 20px auto;
+    width: 300px;
+    height: 45px;
+    border-radius: 10px;
+    text-align: center;
+} 
+.btnBox:hover{
+    background: transparent;
+    color: #0a3c49;
+} */
+a, a:hover{
+    text-decoration: none;
+}
+#row{
+    margin: auto;
+    width: 300px;
+    text-align: center;
+    text-decoration: none;
+}
+.option-row{
+    text-align: left;
+    margin: auto;
+    width: 300px;
+}
+.error{
+    color: red;
+}
