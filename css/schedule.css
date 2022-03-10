@@ -1,0 +1,21 @@
+.schedule-box{
+    margin: 10px auto;
+}
+h4, .schedule-form, .schedule-col{
+    padding: 10px;
+}
+.schedule-form{
+    padding: 10px;
+}
+button{
+    border-radius: 5px;
+    padding: 10px;
+    background: #28819d;
+    color: white;
+    font-weight: 500;
+    border: 1px solid #0a3c49;
+}
+button:hover{
+    background: transparent;
+    color: #0a3c49;
+}

@@ -31,7 +31,7 @@ include('connect.php');
         
 
         if (mysqli_query($conn, $sql)){
-            header("location: login.php");
+            header("location: index.php");
                 die;
         }else{
             echo "error:". $sql. "" .mysqli_error($conn);

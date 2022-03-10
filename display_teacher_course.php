@@ -9,46 +9,66 @@
                   <input type="" name="course" id="course-row" value="<?php echo $course; ?>" readonly><br>
                   
                   </div>
-                <div class='col-lg-2 col-md-6 '>
-                  <i class='bx bx-dots-vertical-rounded'  id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'></i>
+                  <div class='col-lg-2 col-md-6 dropdown dropbtn'>
+                  <i class='bx bx-dots-vertical-rounded' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'></i>
                   
-                  <div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
+                  <div class='dropdown-menu nav-pills' id="v-pills-tab" role="tablist" aria-labelledby='dropdownMenuLink'>
 
                   
                     <button class='dropdown-item list' href='' name='reg-list' type='submit'> list of registered students</button>
                   
 
-                    <a class='dropdown-item' href=''>schedule a class</a>
-                    
-                    <!-- <a class='dropdown-item' href='' data-bs-toggle='modal' data-bs-target='#staticBackdrop'>delete this course</a> -->
-                    <button class='dropdown-item' type='submit' name='deleteid' id='deleteID' class='btn btn-primary'>Delete this course</button>
+                    <a class='dropdown-item' href='schedule_class.php'>schedule a class</a>
+
+                    <a class='dropdown-item' name="deleteid" data-bs-toggle='modal' data-bs-target='#staticBackdropdelete' onclick="disp('<?php echo $course;?>')"  data-userid="<?php echo $row['id'];?>" href="display_teacher_course.php#staticBackdropdelete">Delete this course</a>
                   </div>
+</form>
                   
                                     <!-- delete Modal -->
-  <!-- <div class='modal fade' id='staticBackdrop' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true'>
+  <div class='modal fade' id='staticBackdropdelete' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true'>
     <div class='modal-dialog modal-sm'>
       <div class='modal-content'>
-        <div class='modal-header'> -->
-          <!-- <h5 class='modal-title' id='staticBackdropLabel'>Modal title</h5> -->
-          <!-- <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+        <div class='modal-header'> 
+          <h5 class='modal-title' id='staticBackdropLabel'>Modal title</h5>
+           <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
         </div>
-        
-        <div class='modal-body'>
+        <form action="delete_course.php" method="post">
+        <div class='modal-body' id="modal-course">
             
-          Are you sure you want to delete file?
+          Are you sure you want to delete <input name="modal-course-input" class="modal-input" id="modal-course-input" readonly>
          
         </div>
         <div class='modal-footer'>
-          <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancel</button>
-          <button type='submit' name='deleteid' id='deleteID' class='btn btn-primary'>Delete</button>
-        </div> -->
-        <!-- </form> -->
-      <!-- </div>
+          <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>No</button>
+          <button type='submit' name='deleteBtn' id='deleteBtn' class='btn btn-primary'>Yes</button>
+        </div> 
+        </form>
+       </div>
     </div>
-  </div> -->
+  </div>
         
                 </div>
                 </div><!--/row-->
               </div><!--/list-group-item-->
               
               </form>
+
+
+              <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script>
+
+function disp(par) {
+
+var file = document.getElementById('modal-course-input');
+file.value=par;
+return;
+}
+
+// $('#schedule-tab').click(function (e){
+//   console.log('hhh');
+//   e.preventDefault();
+//   $('#schedule').tab('show');
+// })
+
+
+</script>

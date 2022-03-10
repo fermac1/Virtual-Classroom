@@ -61,18 +61,6 @@ if(isset($_POST['reg-list'])){
 }
 }
 include('course_reg_list.php');
-//delete option
-if(isset($_POST['deleteid'])){
-    $getCourse = $_POST['course'];
-    echo $getCourse;
 
-    $delete = mysqli_query($conn, "DELETE FROM courses WHERE course_code='$getCourse' ");
-       
-        if($delete){
-            header("location: teacher_dashboard.php");
-            exit();
-        }else{
-            echo 'unable to delete this course';
-        }
-}
+
 ?>

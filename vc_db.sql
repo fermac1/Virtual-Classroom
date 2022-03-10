@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2022 at 04:01 PM
+-- Generation Time: Mar 10, 2022 at 04:32 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -44,11 +44,9 @@ INSERT INTO `library` (`id`, `userID`, `file_name`, `file_path`, `size (KB)`) VA
 (2, 3, '33014K.pdf', 'library/33014K.pdf', '1474.7548828125KB'),
 (3, 3, '35007b.pdf', 'library/35007b.pdf', '1495.4169921875KB'),
 (4, 1, 'Rectangle 1.jpg', 'library/Rectangle 1.jpg', '3.658203125KB'),
-(7, 1, '4.jpg', 'library/4.jpg', '20.3662109375KB'),
 (8, 4, '1.2. App Wireframes (Template).docx', 'library/1.2. App Wireframes (Template).docx', '174.244140625KB'),
 (9, 4, 'cover letter.docx', 'library/cover letter.docx', '13.2802734375KB'),
-(10, 1, '4CPE575.png', 'library/4CPE575.png', '24.955078125KB'),
-(11, 1, '33014K.pdf', 'library/33014K.pdf', '1474.7548828125KB');
+(12, 1, '33014K.pdf', 'library/33014K.pdf', '1474.7548828125KB');
 
 -- --------------------------------------------------------
 
@@ -104,7 +102,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `library`
 --
 ALTER TABLE `library`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

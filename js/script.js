@@ -52,7 +52,8 @@ window.onclick = function (event) {
     if (!event.target.matches('.drop')) {
         document.getElementById('menu3').style.display = "none";
     }
-}
+} 
+
 function show_list1() {
     var courses = document.getElementById("menu1");
 

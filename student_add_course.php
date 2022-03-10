@@ -1,6 +1,6 @@
 <?php
 include('connect.php');
-
+$msg='';
 $sql = "SELECT * FROM users WHERE id ='$id' AND role ='Student'";
 $user = mysqli_query($conn, $sql);
 if(mysqli_num_rows($user) > 0){
@@ -20,28 +20,6 @@ if(mysqli_num_rows($user) > 0){
                 $creditload = $data['credit_load'];
     
             }
-
-                echo "
-                    <div class='table'>
-                    <form method='post' action='add_course.php'>
-                    <table>
-                    <tr>
-                    <th>course code</th>
-                    <th>course title</th>
-                    <th>credit load</th>
-                   </tr>
-                    <tr>
-                    <td>{$coursecode}</td>
-                    
-                    <td>{$coursetitle}</td>
-                    
-                    <td>{$creditload}</td>
-                    
-                    </tr>
-                    </table>
-                    </form>
-                    </div>
-                    ";
 
                     $add = "SELECT * FROM course_registration WHERE course_code = '$coursecode' AND userID ='$id'";
                     $query = mysqli_query($conn, $add);
@@ -63,18 +41,18 @@ if(mysqli_num_rows($user) > 0){
                         VALUES('$id', '$email', '$coursecode', '$pin')";
                         $insert_query = mysqli_query($conn, $insert);
                         if($insert_query){
-                        echo "<div class='alert alert-success' role='alert'>
+                        $msg = "<div class='alert alert-success' role='alert'>
                         {$coursecode} has been added successfully.
                       </div>";
-                    //   include('student_course_list.php');
+                
                         }else{
-                        echo "<div class='alert alert-danger' role='alert'>
+                        $msg = "<div class='alert alert-danger' role='alert'>
                         There was an error adding this file.</div>";
                         }
                     }
                 
         }else{
-            echo "<div class='alert alert-warning' role='alert'>
+            $msg = "<div class='alert alert-warning' role='alert'>
                         This  course does not exist.</div>";
             
         }

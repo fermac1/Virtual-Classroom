@@ -10,7 +10,7 @@
   position: fixed;
   height: 100%;
   width: 240px;
-  background: #0A2558;
+  background: #0a3c49;
   transition: all 0.5s ease;
   overflow: auto;
 }
@@ -45,12 +45,15 @@ a:hover{
     color: white;
     
 }
+/* #myList a:active{
+  background: none;
+} */
 .showMenu:hover{
     background: gray;
     padding-bottom: 0;
 }
 .showMenu{
-  background: #081D45;
+  background: #114f66;
 }
 .sub-menu {
     width: 100%;
@@ -60,9 +63,9 @@ a:hover{
     /* padding: 10px 0; */
 }
 .sidebar .nav-links:hover{
-  background: #081D45;
+  background: #114f66;;
 }
-.sidebar .nav-links .showMenu a.active{
+.showMenu a.active{
   background: grey;
 }
 .sidebar .nav-links i{
@@ -136,7 +139,7 @@ nav .search-box .bx-search{
   position: absolute;
   height: 40px;
   width: 40px;
-  background: #2697FF;
+  background: #28819d;
   right: 5px;
   top: 50%;
   transform: translateY(-50%);
@@ -173,14 +176,14 @@ span.arrow{
     margin: 10px auto;
     border-radius: 50%;
     border: 1px solid transparent;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 1px rgba(0, 0, 0, 0.3);
 }
 .user{
     color: white;
     margin: auto 20px; 
 }
-h2{
-  color: #081D45;
+h2, h3, h4{
+  color: #0a3c49;
 }
 
 
@@ -214,11 +217,11 @@ h2{
 .course-data{
   width: 500px;
 }
-#course-row, #file-row{
+#course-row, #file-row, #modal-input, .modal-input{
   border: none;
   background: transparent;
 }
-#course-row:focus, #file-row:focus{
+#course-row:focus, #file-row:focus, #modal-input:focus, .modal-input:focus{
   background: transparent;
   outline: none;
 }
@@ -232,6 +235,12 @@ h2{
 }
 .btnBox{
   margin-top: 10px;
+  background: #114f66;
+}
+.btnBox:hover{
+  background: transparent;
+  color: #0a3c49;
+  border: 1px solid #0a3c49;
 }
 .table{
   padding: 10px;
@@ -265,11 +274,20 @@ th,td{
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   padding: 10px;
+  width:400px;
+  margin: 20px 30px 20px 0;
+  height: fit-content;
+}
+.schedule-box{
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 10px;
   width:500px;
-  margin: 20px 0;
+  margin: 20px 0 20px 30px;
+  height: fit-content;
 }
 .button-see-all{
-  background: #081D45;
+  background: #114f66;
   color: #f5f5f5;
   padding: 5px;
   border-radius: 5px;
@@ -286,7 +304,27 @@ th,td{
   width: 700px;
   margin: 20px 0;
 }
-.notification-box p{
+.notification-box p, .schedule-box .no-schedule{
   color: gray;
   font-weight: 500;
+}
+.schedule-button, .assignment-button{
+  border-radius: 5px;
+  padding: 5px 10px;
+  background: #28819d;
+  color: white;
+  font-weight: 500;
+  border: 1px solid #0a3c49;
+  margin: 10px 0;
+}
+.schedule-button:hover, .assignment-button:hover{
+  background: transparent;
+  color: #0a3c49;
+}
+.schedule-hr, .notification-hr{
+  margin: 10px;
+}
+/* assignment */
+.assign-col{
+  padding: 10px;
 }

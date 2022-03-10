@@ -2,14 +2,16 @@
           <ul class="list-group">
           <?php
             // Get data from the database
-          $query = $conn->query("SELECT * FROM library WHERE userID = $id ORDER BY file_name ASC");
+          $query = $conn->query("SELECT * FROM library WHERE userID = $id ORDER BY file_name DESC");
 
           if($query->num_rows > 0){
               while($row = $query->fetch_assoc()){
                   $fileName = $row["file_name"];
                   $file_id = $row['id'];
 
+// include('display_library.php'); 
 include('display_library.php'); 
+
               }               
 
               }else{ 

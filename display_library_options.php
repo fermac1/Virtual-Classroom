@@ -1,18 +1,17 @@
+
 <?php
 include('connect.php');
-// include('session.php');
+include('session.php');
 $id = $_SESSION['id'];
-echo'ffff';
-if(isset($_POST['delete-modal'])){
+
+// if(isset($_POST['delete-modal'])){
+    // $getFile = $_POST['file'];
+    // echo $row['file_name'];
+
+if(isset($_POST['deletefile'])){
     $getFile = $_POST['file'];
-  
-echo $getFile;
-    // $query = mysqli_query($conn, "SELECT * FROM library WHERE userID = '$id' ");
-    // if($query){
-    //     while($rows = mysqli_fetch_assoc($query)){
-    //         $id = $row['id'];
-    //         $file = $row['file_name'];
-    //     }
-    // }
+    echo 'ggg';
+    echo $getFile;
+// }
 }
  ?>

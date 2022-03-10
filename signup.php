@@ -26,7 +26,12 @@
               <input type="password" class="form-control password" id="password" name="password" placeholder="Password" required>
             </div>
     
-          
+            <select class="form-control form-control-sm inputBox" name="role"  required>
+            <option selected>select..</option>
+            <option>Teacher</option>
+            <option>Student</option>
+            </select>
+
             <div class="option-row row" required>
             <div class=" col-sm-4 col-md-3">Gender:</div>
                 
@@ -40,7 +45,9 @@
               </div>
             </div> <!--/option-row-->
 
-            <div class="option-row row" required>
+        
+
+            <!-- <div class="option-row row" required>
                 <p>Are you a Teacher?</p>
               <div class="form-check col-sm-12 col-md-12">
                 <input type="checkbox" class="form-radio-input" id="exampleCheck1" name="role" value="Teacher">
@@ -50,13 +57,14 @@
                 <input type="checkbox" class="form-radio-input" id="exampleCheck1" name="role" value="Student">
                 <label class="form-radio-label" for="exampleCheck1">Student</label>
               </div>
-            </div> <!--/option-row-->
+            </div> -->
+             <!--/option-row-->
 
         <div class="form-group">
             <button type="submit" id="submit" name="submit" class="btn btn-primary btnBox">Submit</button>
         </div>
         <div class="form-group">
-            <p>Already have an account? <a href="login.php">Login</a></p>
+            <p>Already have an account? <a href="index.php">Login</a></p>
         </div>
         <svg width="500" height="111" viewBox="0 0 800 111" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0L53 4.17052C107 8.34104 213 16.6821 320 30.7977C427 45.2341 533 65.7659 640 69.9364C747 74.1069 853 61.5954 960 57.7457C1067 53.5751 1173 57.7457 1227 59.6705L1280 61.5954V111H1227C1173 111 1067 111 960 111C853 111 747 111 640 111C533 111 427 111 320 111C213 111 107 111 53 111H0V0Z" fill="#93b7cd" fill-opacity="0.8"/>

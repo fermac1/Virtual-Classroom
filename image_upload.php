@@ -1,6 +1,6 @@
 <?php
     // session_start();
-    include ('connect.php');
+    include('connect.php');
     include('session.php');
 
     $firstname = ''; $lastname=''; $email = ''; $image ='';  $default_image ='';
