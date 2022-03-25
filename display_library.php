@@ -7,15 +7,15 @@
             <input type="" id="file-row" name="file" value="<?php echo $fileName;?>" readonly>
             
             
-</div>
+        </div>
 
 
         <div class="col-lg-1 dropdown">
             <i class='bx bx-dots-vertical-rounded' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'></i>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a href="" class="dropdown-item">Open</a>
-                <a class='dropdown-item mybtn' name="delete-modal" id='delete-modal' data-bs-toggle='modal' data-bs-target='#delete' onclick="showHint('<?php echo $fileName;?>')"  data-userid="<?php echo $row['id'];?>" href="display_library.php#delete">Delete</a>
+                <a href="library/<?php echo $row["file_name"]?>" target="_blank" class="dropdown-item">Open</a>
+                <a class='dropdown-item mybtn' name="delete-modal" id='delete-modal' data-bs-toggle='modal' data-bs-target='#delete' onclick="showHint('<?php echo $fileName;?>')"  data-userid="<?php echo $row['id'];?>" href="dsp_lib.php#delete">Delete</a>
                 <a href="" class="dropdown-item">Rename</a>
                 <a href="" class="dropdown-item">Details</a>
             </div>
@@ -53,12 +53,33 @@
 </div>
 
 
+
 <script>
 
+    // onkeyup="showHint(this.value)"
 function showHint(str) {
     
     var file = document.getElementById('modal-input');
     file.value=str;
+    // var butid= document.getElementsByName('fileid')[0]
+
+    // console.log(but.value)
+    // console.log(butid.value)
+    // console.log(str)
+
+    // console.log("herrr")
+    // if (str.length == 0) {
+        // document.getElementById("txtHint").innerHTML = str;
         return;
+    // } else {
+    //     var xmlhttp = new XMLHttpRequest();
+    //     xmlhttp.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             document.getElementById("txtHint").innerHTML = this.responseText;
+    //         }
+    //     };
+    //     xmlhttp.open("GET", "gethint.php?q=" + str, true);
+    //     xmlhttp.send();
+    // }
 }
 </script>

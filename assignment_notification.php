@@ -3,7 +3,7 @@
                 <b>Course Code:</b>
                 </div>
                 <div class="col-lg-8">
-                    <?php echo $assign_course;?>
+                    <?php echo $assign_course; ?>
                 </div> 
             </div>
 

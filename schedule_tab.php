@@ -13,7 +13,25 @@
 
 include('schedule_info.php'); 
 
-              }               
+
+              } 
+
+      $current_date = date("Y-m-d") ;
+      $current_time = date("H:i:s") ;
+// $expiry = date("h:i:s", strtotime($time. "+5 hours"));
+
+  // if($date < $current_date){
+          
+          $delete = "DELETE FROM schedule_class WHERE date < '$current_date'";
+          $d_query = mysqli_query($conn, $delete);
+          
+          // if($delete){
+          //     echo 'yay';
+          // }else{
+          //     echo 'nay';
+          // }
+      // }
+            
 
               }else{ 
                echo "<div class='alert alert-warning no-schedule' role='alert'>

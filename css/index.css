@@ -3,35 +3,68 @@
     margin: 0;
     padding: 0;
 }
-.container-fluid{
-    height: 100%;
-    /* background-image: url('../images/img7.jpg'); */
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgb(8, 29, 69,0.7)), url('../images/img7.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%;
+.mainDiv{
+    height: 100vh;
+    /* width: 100vh; */
+    position: relative;
+    background-size: cover;
+    /* background-position: 50% 50%; */
+    background-image: url('../images/img7.jpg');
+    /* overflow-y: auto; */
+}
+.overlay{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(8, 29, 69, 0.6);
     color: white;
+    overflow: hidden;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* flex-direction: column; */
 }
 h1{
     margin: auto 20px;
-    /* color: #5b8be6; */
     color: #93b7cd;
     padding-top: 100px;
 }
 .text{
     margin: auto 20px;
     text-align: justify;
-    padding: 30px 10px;
+    padding: 20px 10px;
     color: white;
 }
 
 footer{
-    margin: 120px 0 0;
-    padding: 100px 0 50px;
-    color: #081D45;
+    /* margin: 120px 0 0; */
+    padding: 30px 0 10px;
+    /* color: #081D45; */
+    color: white;
     font-weight: 500;
+    position: fixed;
+    margin: auto 20px;
+    bottom: 0;
+    /* text-align: center; */
+    left: 40%;
+    
+}
+#loginbtn, #signupbtn{
+    background: #28819d;
+    color: white;
+    font-weight: 500;
+    margin: auto 20px 10px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #28819d;
+}
+#loginbtn:hover, #signupbtn:hover{
+    background: transparent;
 }
 /* login */
-.login{
+.form{
     background: transparent;
     position: relative;
     right: 0;
@@ -40,7 +73,6 @@ footer{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     border: 1px solid white;
-
     display: block;
     margin: auto;
     text-align: center;
@@ -91,4 +123,7 @@ a:hover{
 }
 .error{
     color: red;
+}
+#signup{
+    margin-bottom: 10px;
 }

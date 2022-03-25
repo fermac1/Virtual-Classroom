@@ -24,7 +24,7 @@ if(isset($_POST['schedule'])){
         
             if($insert_query){
                 $statusMsg = "<div class='alert alert-success' role='alert'>
-                Course has been scheduled successfully.
+              Class has been scheduled successfully.
               </div>";
             }
         }

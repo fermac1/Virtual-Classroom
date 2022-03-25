@@ -34,12 +34,7 @@
    <a class='dropdown-item' href='' data-bs-toggle='modal' data-bs-target='#rename'>rename</a>
    <a class='dropdown-item' href=''data-bs-toggle='modal' data-bs-target='#details'>details</a>
    <button type="button" name="dlete" id='dlete' data-bs-toggle='modal' data-bs-target='#delete'>dlete</button>
- 
-<?php
-// if(isset($_POST['delete-modal'])){
-//   echo 'ff';
-// }
-?>  
+
 
 
   delete Modal -->
@@ -67,12 +62,44 @@
 </div>
 </form>  -->
 
+<form action="test.php" method="post">
+  <input type="date" name="date" id="">
+  <input type="time" name="time" id="">
+  <input type="submit" name="submit" value="submit">
+</form>
+<?php
+if(isset($_POST['submit'])){
+echo "<p>{$_POST['date']} is date</p>";
+echo "<p>{$_POST['time']} is time</p>";
 
-<?php echo "<td><a rel='' href='javascript:void(0)' class='delete_link'>DELETE</a></td>";?>
+$input_d = $_POST['date'];
+$input_t = $_POST['time'];
+
+if($input_t < date("H:i:s")){
+  echo 'true';
+}else{
+  echo 'false...';
+}
+}
+?>
+
+<?php
+$expire = time() + (12 * 60 *60);
+$date = date("H:i:s");
+$expiry = date("H:i:s", strtotime($date. "+13 hours"));
+// $expiry -> add(new DateInterval("PT12H"));
+echo time();
+echo '<br>';
+echo (12 * 60 *60);
+echo '<br>';
+echo $date;
+echo '<br>';
+echo $expiry;
+?>
 
 <!-- Modal -->
     <!-- Modal content-->
-    <div class="modal-content">
+    <!-- <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Delete Modal</h4>
@@ -86,7 +113,7 @@
         </div>
     </div>
 
-</div>
+</div> -->
 
  <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

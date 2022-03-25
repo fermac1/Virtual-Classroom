@@ -13,13 +13,15 @@
                 
             // }
             //check for assignments
-            $assign = mysqli_query($conn, "SELECT * FROM assignment WHERE course_code='$course' ORDER BY id ASC");
+            $assign = mysqli_query($conn, "SELECT * FROM assignment WHERE course_code='$course' ORDER BY id DESC");
             if(mysqli_num_rows($assign) > 0){
                 while($row = mysqli_fetch_assoc($assign)){
                     $assign_course = $row['course_code'];
                     $description = $row['description'];
                     $file = $row['file_name'];
                     $user_id = $row['userID'];
+                    $row_id =$row['id'];
+                    // echo $row_id;
                     
                 // }
                     //get student information

@@ -3,7 +3,7 @@
     include('connect.php');
     $error='';
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['login'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
 
