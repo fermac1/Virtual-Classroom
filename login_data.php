@@ -29,12 +29,12 @@
            $role = $row['role'];
 
            if($role === 'Teacher'){
-            header("location:teacher_dashboard.php?id=".$row["id"]);
+            header("location:teacher_dashboard_tab.php?id=".$row["id"]);
             die; 
            }
            
            if($role === 'Student'){
-            header("location:student_dashboard.php?id=".$row["id"]);
+            header("location:student_dashboard_tab.php?id=".$row["id"]);
             die; 
            }
            

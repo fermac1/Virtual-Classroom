@@ -1,27 +1,30 @@
 
-                <form method='post' action="course_list_options.php">
-                <div class='list-group-item course-list'>
-                
-                  <div class='row' name='id'>
-                  
-                  <div class='col-lg-10 col-md-6'>
-                 
-                  <input type="" name="course" id="course-row" value="<?php echo $course; ?>" readonly><br>
-                  
-                  </div>
-                  <div class='col-lg-2 col-md-6 dropdown dropbtn'>
-                  <i class='bx bx-dots-vertical-rounded' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'></i>
-                  
-                  <div class='dropdown-menu nav-pills' id="v-pills-tab" role="tablist" aria-labelledby='dropdownMenuLink'>
+          <form method='post' action="course_reg_list.php">
+          <div class='list-group-item course-list'>
+          
+            <div class='row' name='id'>
+            
+            <div class='col-lg-10 col-md-6'>
+            
+            <input type="" name="course" id="course-row" value="<?php echo $course; ?>" readonly><br>
+            
+            </div>
+            <div class='col-lg-2 col-md-6 dropdown dropbtn'>
+            <i class='bx bx-dots-vertical-rounded' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'></i>
+            
+            <div class='dropdown-menu nav-pills' id="v-pills-tab" role="tablist" aria-labelledby='dropdownMenuLink'>
 
-                  
-                    <button class='dropdown-item list' href='' name='reg-list' type='submit'> list of registered students</button>
-                  
+            
+              <button class='dropdown-item list' href='' name='reg-list' type='submit'> list of registered students</button>
+            
+              <a class='dropdown-item' href='schedule_class.php'>schedule a class</a>
 
-                    <a class='dropdown-item' href='schedule_class.php'>schedule a class</a>
+              <a class='dropdown-item' href='add_course_details.php'>Add course description</a>
 
-                    <a class='dropdown-item' name="deleteid" data-bs-toggle='modal' data-bs-target='#staticBackdropdelete' onclick="disp('<?php echo $course;?>')"  data-userid="<?php echo $row['id'];?>" href="display_teacher_course.php#staticBackdropdelete">Delete this course</a>
-                  </div>
+              <a class='dropdown-item' name="coursed" onclick="display('<?php echo $course;?>')"  data-userid="<?php echo $row['id'];?>" href="course_details.php?id=<?php echo $courseid;?>" >Course details</a>
+              
+              <a class='dropdown-item' name="deleteid" data-bs-toggle='modal' data-bs-target='#staticBackdropdelete' onclick="disp('<?php echo $course;?>')"  data-userid="<?php echo $row['id'];?>" href="display_teacher_course.php#staticBackdropdelete">Delete this course</a>
+            </div>
 </form>
                   
                                     <!-- delete Modal -->
@@ -39,8 +42,8 @@
          
         </div>
         <div class='modal-footer'>
-          <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>No</button>
-          <button type='submit' name='deleteBtn' id='deleteBtn' class='btn btn-primary'>Yes</button>
+          <button type='button' class='btn btn-secondary btnBox' data-bs-dismiss='modal'>No</button>
+          <button type='submit' name='deleteBtn' id='deleteBtn' class='btn btn-primary btnBox'>Yes</button>
         </div> 
         </form>
        </div>
@@ -63,12 +66,5 @@ var file = document.getElementById('modal-course-input');
 file.value=par;
 return;
 }
-
-// $('#schedule-tab').click(function (e){
-//   console.log('hhh');
-//   e.preventDefault();
-//   $('#schedule').tab('show');
-// })
-
 
 </script>

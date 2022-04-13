@@ -13,20 +13,20 @@
     <div class="container">
     <form action="add_user.php" method="POST" class="form-tag">
         <h4>Sign Up</h4>
-      <div class="col-lg-8 col-md-8 form-group inputBox">
+      <div class="col-lg-12 col-md-8 form-group inputBox">
           <input type="email" class="form-control email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" required>
       </div>
-      <div class="col-lg-8 col-md-8 form-group inputBox">
+      <div class="col-lg-12 col-md-8 form-group inputBox">
           <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First name" required> 
       </div>
-      <div class="col-lg-8 col-md-8 form-group inputBox">
+      <div class="col-lg-12 col-md-8 form-group inputBox">
           <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" required>  
       </div>
-      <div class="col-lg-8 col-md-8 form-group inputBox">
+      <div class="col-lg-12 col-md-8 form-group inputBox">
           <input type="password" class="form-control password" id="password" name="password" placeholder="Password" required>
       </div>
-      <div class="col-lg-8 col-md-8 form-group inputBox">
-      <select class="form-control form-control-sm inputBox" name="role"  required>
+      <div class="col-lg-12 col-md-8 form-group inputBox">
+      <select class="form-control form-control-sm" name="role"  required>
             <option selected>select..</option>
             <option>Teacher</option>
             <option>Student</option>

@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
             $headers = "MIME-VERSION: 1.0". "\r\n";
             $headers = "Content-type:text/html;charset=UTF-8". "\r\n";
             $headers = "From: <demo@demo.com>". "\r\n";
-            // mail($to, $subject, $message, $headers);
+            mail($to, $subject, $message, $headers);
 
             $msg = "<div class='alert alert-success'>Password reset link has been sent to the email</div>";
         }
@@ -36,17 +36,20 @@ if(isset($_POST['submit'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css?v=<?php echo time(); ?>">
     <title>forgot password</title>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <h1>Forgot Password</h1>
+    <div class="container-fluid mainDiv">
+    <div class="overlay">
+        <div class="row forgot-password">
+        <h1>Forgot Password</h1>
+            <div class="col-lg-12 col-md-12">
+                
                 <form action="forgot_password.php" method="post">
                     <div class="form-group">
-                        <label for="">Enter Email</label>
-                        <input type="email" name="email" class="form-control">
+                        
+                        <input type="email" name="email" class="form-control" placeholder="Enter Email">
                     </div>
                     <?php if(isset($msg)){ echo $msg; } ?>
                     <div class="form-group">
@@ -55,6 +58,7 @@ if(isset($_POST['submit'])){
                 </form>
             </div>
         </div>
+    </div>
     </div>
 
     <script src="js/bootstrap.min.js"></script>

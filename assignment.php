@@ -6,7 +6,7 @@ $id = $_SESSION['id'];
   $html=''; $statusMsg='';
 // File upload path
 if(isset($_POST['assignment'])){
-      $coursecode = $_POST['input-course'];
+      $coursecode = strtoupper($_POST['input-course']);
       $description = $_POST['description'];
 
   if($_FILES['assign_file']['name'] != ''){

@@ -14,11 +14,11 @@ if(isset($_POST['deletefile'])){
         if($delete){
             include('user.php');
             if($role === 'Teacher'){
-                header("location: teacher_dashboard.php");
+                header("location: personal_library_tab.php?=".$id);
                 exit();
             }
             if($role === 'Student'){
-                header("location: student_dashboard.php");
+                header("location: student_personal_library_tab.php");
                 exit();
             }
         }else{

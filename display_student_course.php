@@ -13,6 +13,8 @@
                   
                   <div class='dropdown-menu nav-pills' id="v-pills-tab" role="tablist" aria-labelledby='dropdownMenuLink'>
 
+                  <a class='dropdown-item' name="coursed" href="student_course_details.php?id=<?php echo $courseid;?>" >Course details</a>
+
                     <a class='dropdown-item' name="unreg" data-bs-toggle='modal' data-bs-target='#staticBackdropreg' onclick="reg('<?php echo $course;?>')"  data-userid="<?php echo $row['id'];?>" href="display_student_course.php#staticBackdropreg">Unregister this course</a>
                   </div>
                   
@@ -31,8 +33,8 @@
          
         </div>
         <div class='modal-footer'>
-          <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>No</button>
-          <button type='submit' name='unregister' id='unregister' class='btn btn-primary'>Yes</button>
+          <button type='button' class='btn btn-secondary btnBox' data-bs-dismiss='modal'>No</button>
+          <button type='submit' name='unregister' id='unregister' class='btn btn-primary btnBox'>Yes</button>
         </div> 
         </form>
        </div>

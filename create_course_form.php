@@ -1,14 +1,18 @@
+<?php
+include('teacher_dashboard.php');
+?>
+<div class="sub-section not-dashboard">
 <h3 class="mb-4">Create Course</h3>
             <?php include ('teacher_create_course.php');?>
-                <form action="teacher_dashboard.php" method="post">
+                <form action="" method="post">
                 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-8">
                             <?php echo $statusMsg;?>
                         </div>
                     </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="form-group">
                               <label>course code</label>
                               <input type="text" class="form-control" name="course_code" required>
@@ -16,7 +20,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="form-group">
                               <label>course title</label>
                               <input type="text" class="form-control" name="course_title" required>
@@ -24,7 +28,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="form-group">
                               <label>credit load</label>
                               <select class="form-control form-control-sm inputBox" name="credit_load" id="credit_load" required>
@@ -47,4 +51,4 @@
                     <button class="btn btn-primary btnBox" type="submit" name="create">Create</button>
                 </div>
                 </form>
-            
+</div>

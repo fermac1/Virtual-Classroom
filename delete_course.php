@@ -13,13 +13,13 @@ if(isset($_POST['deleteBtn'])){
         if($delete){
             include('user.php');
             if($role === 'Teacher'){
-                header("location: teacher_dashboard.php");
+                header("location: teacher_course_list.php?=".$id);
                 exit();
             }
-            if($role === 'Student'){
-                header("location: student_dashboard.php");
-                exit();
-            }
+            // if($role === 'Student'){
+            //     header("location: student_dashboard.php");
+            //     exit();
+            // }
         }else{
             echo 'unable to delete this course';
         }

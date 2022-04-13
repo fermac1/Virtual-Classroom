@@ -10,7 +10,7 @@ if(isset($_POST['unregister'])){
     $delete = mysqli_query($conn, "DELETE FROM course_registration WHERE course_code = '$unreg' ");
 
     if($delete){
-        header("location: student_dashboard.php");
+        header("location: student_course_list.php");
         exit();
     }else{
         echo 'unable to delete this course';

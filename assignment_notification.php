@@ -12,7 +12,7 @@
                 <b>Name:</b>
                 </div>
                 <div class="col-lg-8">
-                <?php echo $firstname, '&nbsp;', $lastname;?>
+                <?php echo ucfirst($firstname), '&nbsp;', ucfirst($lastname);?>
                 </div> 
             </div>
 
@@ -20,8 +20,9 @@
                 <div class="col-lg-3">
                 <b>File:</b>
                 </div>
-                <div class="col-lg-8">
-                <?php echo $file;?>
+                <div class="col-lg-8 notification-file">
+                <a href="library/<?php echo $row["file_name"]?>" target="_blank" class="notification-file">
+                <?php echo $file;?></a>
                 </div> 
             </div>
 

@@ -5,7 +5,7 @@ $statusMsg='';
 $id = $_SESSION['id'];
 
 if(isset($_POST['schedule'])){
-    $course = $_POST['schedule-class-input'];
+    $course = strtoupper($_POST['schedule-class-input']);
     $date = $_POST['schedule-date'];
     $time = $_POST['schedule-time'];
 

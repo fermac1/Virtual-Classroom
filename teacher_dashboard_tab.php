@@ -1,4 +1,8 @@
-<div class="container">
+<?php
+include('teacher_dashboard.php');
+?>
+<div class="container sub-section">
+<h2 class="mb-4">Welcome, <?php echo ucfirst($firstname);?></h2>
     <div class="row">
         <div class="col-lg-12 col-md-4 notification-box">
             <h4>Notification</h4>
@@ -7,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 col-md-4 course-box">
+        <div class="col-lg-4 col-md-4 course-box">
            <h4>Created Courses</h4> 
            <?php
                       // Get data from the database
@@ -32,12 +36,12 @@
                          }
           ?>
             <button class="button-see-all">
-            <a class="" id="listCourse-tab" data-toggle="pill" href="#listCourse" role="tab" aria-controls="listCourse" aria-selected="false">See All</a>
+            <a class="" href="teacher_course_list.php">See All</a>
             </button>
 
 
         </div>
-        <div class="col-lg-4 col-md-4 schedule-box">
+        <div class="col-lg-7 col-md-4 schedule-box">
             <h4>Schedules</h4>
             <!-- <p>no schedule yet</p> -->
             <?php

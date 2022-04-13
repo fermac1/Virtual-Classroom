@@ -41,24 +41,30 @@ if(mysqli_num_rows($user) > 0){
                         VALUES('$id', '$email', '$coursecode', '$pin')";
                         $insert_query = mysqli_query($conn, $insert);
                         if($insert_query){
+                            
                         $msg = "<div class='alert alert-success' role='alert'>
                         {$coursecode} has been added successfully.
                       </div>";
+                    echo $msg;
                 
                         }else{
+                            
                         $msg = "<div class='alert alert-danger' role='alert'>
-                        There was an error adding this file.</div>";
+                        There was an error adding this course.</div>";
+                        echo $msg;
                         }
                     }
                 
         }else{
             $msg = "<div class='alert alert-warning' role='alert'>
                         This  course does not exist.</div>";
-            
+            echo $msg;
         }
     }
 
 }else{
-    echo "this user does not exist or is not registered as a student";
+    $msg = "<div class='alert alert-danger' role='alert'>
+    this user does not exist or is not registered as a student</div>";
+    echo $msg;
 }
 ?>

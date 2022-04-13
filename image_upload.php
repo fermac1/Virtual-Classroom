@@ -62,14 +62,14 @@
                     
                 if(move_uploaded_file( $target_file, $filepath))
                 {
-                    // echo <"<img src=".$filepath." width=150 />";
-                    echo 'uploaded successfully';
+                    
+                    // echo 'uploaded successfully';
                 }
                 else {
-                    echo "Error!!";
+                    // echo "Error!!";
                 }
         }else{
-        echo "no photo";
+        // echo "no photo";
         }
         }else{
             // echo"<img src= 'images/camera.png' width='100%'/>";

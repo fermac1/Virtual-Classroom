@@ -9,7 +9,7 @@ include('login_data.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home page</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <div class="container-fluid mainDiv" id="main">
@@ -34,7 +34,7 @@ include('login_data.php');
             
 
     <center>
-            <footer>
+            <footer id="footer">
             
             <p>Virtual Classroom &copy2022</p>
                 <p>Programmed by: Pamela Fermac</p>
@@ -55,6 +55,6 @@ include('login_data.php');
 
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.min.js"></script>
-  <script src="js/index.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>

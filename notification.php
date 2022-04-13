@@ -1,7 +1,12 @@
-<div class="notification-box">
+<?php
+include('teacher_dashboard.php');
+?>
+<div class="container">
     <!-- <p>You do not have any notifications yet</p> -->
-    <div class="row">
+    <div class="row sub-section not-dashboard">
+    <h3>Notifications</h3>
         <div class="col-lg-12">
+        
         <?php
         include('connect.php');
         // include('session.php');
@@ -38,20 +43,15 @@
                  }
                  }
 
-                //  add header to load file
-                // header('Content-type:application/pdf');
-                // header('Content-Disposition:inline;filename='.$file.);
-                // header('Content-Transfer-Encoding:binary');
-                // header('Accept-Ranges: bytes');
-                // @readfile($file);
-
-             }else{
-                 echo "<p>You do not have any notifications yet</p>";
              }
+            //  else{
+            //      echo "<p>You do not have any notifications yet</p>";
+            //  }
             }
-        }else{
-            echo "no created courses";
         }
+        // else{
+        //     echo "no created courses";
+        // }
         ?>
     </div>
     </div>

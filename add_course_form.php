@@ -1,7 +1,12 @@
-<div class="container add-course">
+<?php
+  include('student_dashboard.php');
+?>
+
+<div class="container add-course sub-section not-dashboard">
     <h4 class="mb-4">Add Course</h4>
-    <?php include('student_add_course.php'); $msg = '';?>
-    <form action="student_dashboard.php" method="post">
+    <?php include('student_add_course.php'); $msg = ''; ?>
+    <form action="" method="post">
+
         <div class="row">
             <!-- <div class="col-md-12"> -->
                 <div class="form-group">

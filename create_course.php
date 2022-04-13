@@ -9,7 +9,7 @@
                 //upload courses to database
                 if(isset($_POST['create'])){
                     
-                    $coursecode = $_POST['course_code'];
+                    $coursecode = strtoupper($_POST['course_code']);
                     $coursetitle = $_POST['course_title'];
                     $creditload = $_POST['credit_load'];
     
@@ -35,6 +35,7 @@
                         $statusMsg = "<div class='alert alert-success' role='alert'>
                         Course has been created successfully.
                       </div>";
+                      $folder = mkdir('library/'.$coursecode);
                       
                     }else{
                         $statusMsg = "<div class='alert alert-danger' role='alert'>

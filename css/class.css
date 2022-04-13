@@ -58,7 +58,7 @@
     /* width: 100vh; */
     position: relative;
     background-size: cover;
-    background-position: 50% 50%;
+    /* background-position: 50% 50%; */
     background-image: url('../images/img7.jpg');
 }
 .overlay{
@@ -90,6 +90,8 @@
     height: 90vh;
     width: 1400px;
     margin:0 auto;
+    
+    border-radius: 10px;
 }
 
 .video-container{
