@@ -1,17 +1,17 @@
 <?php
 include('teacher_dashboard.php');
 ?>
-<div class="container sub-section">
+<div class="container sub-section dashboard-tab">
 <h2 class="mb-4">Welcome, <?php echo ucfirst($firstname);?></h2>
     <div class="row">
-        <div class="col-lg-12 col-md-4 notification-box">
+        <div class="col-lg-12 col-md-4 col-sm-10 notification-box">
             <h4>Notification</h4>
             <!-- <p>You do not have any notifications yet</p> -->
             <?php include('dashboard_notification.php');?>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-4 course-box">
+        <div class="col-lg-4 col-md-4 col-sm-10 course-box">
            <h4>Created Courses</h4> 
            <?php
                       // Get data from the database
@@ -41,7 +41,7 @@ include('teacher_dashboard.php');
 
 
         </div>
-        <div class="col-lg-7 col-md-4 schedule-box">
+        <div class="col-lg-7 col-md-4 col-sm-10 schedule-box">
             <h4>Schedules</h4>
             <!-- <p>no schedule yet</p> -->
             <?php

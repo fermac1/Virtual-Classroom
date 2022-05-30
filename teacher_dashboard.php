@@ -10,6 +10,8 @@ include('image_upload.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/dashboard.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/courses.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/library.css?v=<?php echo time(); ?>">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <title>Document</title>
@@ -60,6 +62,10 @@ include('image_upload.php');
           <li class="list-group-item showMenu myList" aria-current="true">
             <a class="" href="teacher_course_list.php">
                   <i class="fa fa-gear fa-fw"></i> Course List</a>
+            </li>
+            <li class="list-group-item showMenu myList" aria-current="true">
+            <a class="" href="schedule_sidebar.php">
+                  <i class="fa fa-gear fa-fw"></i> Class Schedule</a>
             </li>
         </ul> 
             </li>
@@ -121,8 +127,8 @@ include('image_upload.php');
 
   <section class="home-section">
     <nav class="sticky-top">
-      <div class="">
-        <b>Logo</b>
+    <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
         <!-- <span class="dashboard">Dashboard</span> -->
       </div>
       <div class="search-box">

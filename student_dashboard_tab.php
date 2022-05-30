@@ -1,10 +1,10 @@
 <?php
 include('student_dashboard.php');
 ?>
-<div class="container sub-section">
+<div class="container sub-section dashboard-tab">
 <h2 class="mb-4">Welcome, <?php echo ucfirst($firstname);?></h2>
     <div class="row">
-        <div class="col-lg-12 col-md-4 notification-box">
+        <div class="col-lg-12 col-md-4 col-sm-10 notification-box">
             <h4>Notification</h4>
 <?php include('student_dashboard_notification.php'); ?>
 
@@ -12,7 +12,7 @@ include('student_dashboard.php');
     </div>
 
     <div class="row">
-        <div class="col-lg-6 col-md-4 course-box">
+        <div class="col-lg-6 col-md-4 col-sm-10 course-box">
            <h4>Registered Courses</h4> 
            <?php
                       // Get data from the database

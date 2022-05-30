@@ -8,11 +8,36 @@
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css?v=<?php echo time();?>">
     <title>Sign Up</title>
+
+    <style>
+  @media screen and (max-width: 768px) {
+    .option-row{
+      width: 500px;
+    }
+
+  }
+  @media screen and (max-width: 576px) {
+    .option-row{
+      width: 500px;
+    }
+    .col-xs-2{
+      width: 20%;
+    }
+    .col-xs-3{
+        width: 25%;
+    }
+
+  }
+    </style>
 </head>
 <body>
     <div class="container">
-    <form action="add_user.php" method="POST" class="form-tag">
+        <?php include('add_user.php'); ?>
+    <form action="" method="POST" class="form-tag">
         <h4>Sign Up</h4>
+        <div>
+            <?php echo $msg; ?>
+        </div>
       <div class="col-lg-12 col-md-8 form-group inputBox">
           <input type="email" class="form-control email" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" required>
       </div>
@@ -32,15 +57,15 @@
             <option>Student</option>
       </select>
       </div>
-      <div class="col-lg-8 col-md-8 form-group inputBox">
+      <div class="col-lg-12 col-md-8 col-sm-10 form-group inputBox">
       <div class="option-row row" required>
-            <div class=" col-sm-4 col-md-3">Gender:</div>
+            <div class="col-xs-2 col-sm-2 col-md-3 col-lg-3">Gender:</div>
                 
-              <div class="form-check col-sm-6 col-md-5">
+              <div class="form-check col-xs-3 col-sm-3 col-md-4 col-lg-5">
                 <input type="radio" class="form-radio-input" id="exampleCheck1" name="gender" value="Female">
                 <label class="form-radio-label" for="exampleCheck1">Female</label>
               </div>
-              <div class="form-check col-sm-6 col-md-4">
+              <div class="form-check col-xs-2 col-sm-3 col-md-3 col-lg-4">
                 <input type="radio" class="form-radio-input" id="exampleCheck1" name="gender" value="Male">
                 <label class="form-radio-label" for="exampleCheck1">Male</label>
               </div>
@@ -48,16 +73,12 @@
       </div>
 
     </div>
-        <!-- error -->
-        <div class="error">
-        <?php
-          echo $error;
-        ?>
-        </div>
 
-        <div class="form-group">
+       <div class="row">
+       <div class="form-group col-sm-10">
             <button type="submit" id="submit" name="submit" class="btn btn-primary btnBox">Submit</button>
         </div>
+       </div>
         <div class="form-group">
             <p>Already have an account? <a href="#" class="loginlink">Login</a></p>
         </div>

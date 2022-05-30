@@ -13,7 +13,7 @@
                     <label for=""><b>Course Code:</b> </label>
                     </div>
                     <div class="col-lg-5">
-                    <input type="text" name="course_code" id="course_code" style="margin-bottom: 10px;">
+                    <input type="text" name="course_code" id="course_code" value="<?php echo filter_input(INPUT_GET, 'coursecode', FILTER_SANITIZE_URL);?>" style="margin-bottom: 10px;" readonly>
                     </div>
                 </div>
 

@@ -1,13 +1,13 @@
 <?php
 include('student_dashboard.php');
 ?>
-<div class="container">
+<div class="container sub-section not-dashboard">
     <!-- <p>You do not have any notifications yet</p> -->
-    <div class="row sub-section not-dashboard">
+    <div class="row ">
     <h3>Notifications</h3>
     
         <div class="col-lg-12">
-        <p style="color: #28819d;"><b>Upcoming Class</b></p>
+        
         <?php
         include('connect.php');
         // include('session.php');
@@ -43,7 +43,7 @@ include('student_dashboard.php');
                          $lastname =$get["last_name"];    
                           
                      }
-   
+   echo "<p style='color: #28819d;'><b>Upcoming Class</b></p>";
                    include('student_class_notification.php'); 
    
                 }

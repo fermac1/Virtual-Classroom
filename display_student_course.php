@@ -1,17 +1,31 @@
-
+<style>
+  @media screen and (max-width: 576px) {
+    .course-list{
+      width: 83.33%;
+    }
+    .col-xs-3{
+      /* background-color: red; */
+      width: 80%;
+    }
+    .col-xs-1{
+      /* background-color: blue; */
+      width: 3%;
+    }
+  }
+</style>
                 <div class='list-group-item course-list'>
                 
                   <div class='row'>
                   
-                  <div class='col-lg-10 col-md-6'>
+                  <div class='col-lg-10 col-md-10 col-sm-10 col-xs-3'>
                  
                   <input type="" name="course" id="course-row" value="<?php echo $course; ?>" readonly><br>
                   
                   </div>
-                  <div class='col-lg-2 col-md-6 dropdown dropbtn'>
+                  <div class='col-lg-2 col-md-2 col-sm-1 col-xs-1 dropdown dropbtn'>
                   <i class='bx bx-dots-vertical-rounded' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'></i>
                   
-                  <div class='dropdown-menu nav-pills' id="v-pills-tab" role="tablist" aria-labelledby='dropdownMenuLink'>
+                  <div class='dropdown-menu nav-pills dropdown-menu-right' id="v-pills-tab" role="tablist" aria-labelledby='dropdownMenuLink'>
 
                   <a class='dropdown-item' name="coursed" href="student_course_details.php?id=<?php echo $courseid;?>" >Course details</a>
 

@@ -20,18 +20,13 @@ include('login_data.php');
             <div class="col-lg-5 col-md-6 col-sm-10">
                 <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium repellendus sunt pariatur. Delectus debitis pariatur tenetur cum placeat perspiciatis velit, quasi nemo laboriosam maiores laborum similique quibusdam sunt odio consequatur.</p>
                
-                <button id="signupbtn">SignUp</button>
-                <button id="loginbtn">Login</button>
+                <!-- <button id="signupbtn">SignUp</button>
+                <button id="loginbtn">Login</button> -->
             
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 form" id="login">        
                 <?php include('login.php'); ?>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-8 form" id="signup">  
-                <?php include('signup.php'); ?>
-            </div>
-
-            
+            </div>          
 
     <!-- <center>
             <footer id="footer">
@@ -39,15 +34,10 @@ include('login_data.php');
             <p>Virtual Classroom &copy2022</p>
                 <p>Programmed by: Pamela Fermac</p>
             </footer>
-    </center> -->
+    </center>
 
-        </div>
-        
+        </div> -->
 
-        
-
-  
-    
     </div><!--/overlay-->
 
     </div>
@@ -55,6 +45,6 @@ include('login_data.php');
 
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.min.js"></script>
-  <script src="js/home.js"></script>
+  
 </body>
 </html>

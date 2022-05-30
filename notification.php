@@ -1,9 +1,9 @@
 <?php
 include('teacher_dashboard.php');
 ?>
-<div class="container">
+<div class="container sub-section not-dashboard">
     <!-- <p>You do not have any notifications yet</p> -->
-    <div class="row sub-section not-dashboard">
+    <div class="row">
     <h3>Notifications</h3>
         <div class="col-lg-12">
         

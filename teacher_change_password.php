@@ -84,7 +84,7 @@ echo $msg;
                 </div>
                 <div>
                     <button class="btn btn-primary btnBox" name="change">Update</button>
-                    <button class="btn btn-light">Cancel</button>
+                    
                 </div>
                 </form>
 </div>

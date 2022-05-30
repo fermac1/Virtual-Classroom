@@ -2,7 +2,7 @@
   include('teacher_dashboard.php');
 ?>
 
-  <div class="container sub-section not-dashboard">
+  <div class="sub-section not-dashboard">
   <h4>Course Information</h4>
             <div class="row">
                 <div class="col-lg-12 course-details">

@@ -24,7 +24,7 @@
    if(mysqli_num_rows($result) === 1){
        $row = mysqli_fetch_assoc($result);
        if ($row['email'] === $email && $row['password'] === $pass){
-           $user_name = $row['username'];
+        //    $user_name = $row['username'];
            $_SESSION['id'] = $row['id'];
            $role = $row['role'];
 

@@ -42,13 +42,7 @@
         $uploadOk = 1;
         $filepath = "profile-photo/" . $filename;
         $imageFileType =strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        
-        // echo 'Target File  = '. $target_file;
-        // echo '<br />';
-        // echo 'File name = '. $filename;
-        // echo '<br />';
-        // echo 'File path = '. $filepath;
-
+ 
         //get the submitted data
         $sql = "UPDATE users SET image='$filepath' WHERE id = '$id'" ;
         //execute query

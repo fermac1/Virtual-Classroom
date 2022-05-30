@@ -21,7 +21,7 @@
                 <b>File:</b>
                 </div>
                 <div class="col-lg-8 notification-file">
-                <a href="library/<?php echo $row["file_name"]?>" target="_blank" class="notification-file">
+                <a href="assignment/<?php echo $row["file_name"]?>" target="_blank" class="notification-file">
                 <?php echo $file;?></a>
                 </div> 
             </div>

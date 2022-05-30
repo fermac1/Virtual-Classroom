@@ -5,7 +5,9 @@ $(document).ready(function(){
     $('#loginbtn').click(function(){
         $('#signup').hide();
       $('#login').show();
-      document.getElementById('ovrlay').style.overflow ='hidden';
+      document.getElementById('ovrlay').style.overflowY ='scroll';
+      document.getElementById('main').style.overflowY ='auto';
+      document.getElementById('ovrlay').style.overflowX ='hidden';
     })
     $('#signupbtn').click(function(){
         $('#login').hide();
@@ -13,7 +15,6 @@ $(document).ready(function(){
         document.getElementById('main').style.overflowY ='auto';
         document.getElementById('ovrlay').style.overflowY ='auto';
         document.getElementById('ovrlay').style.overflowX ='hidden';
-        document.getElementById('footer').style.position ='relative';
 
       })
 //signup form

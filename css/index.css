@@ -21,10 +21,6 @@
     background: rgba(8, 29, 69, 0.6);
     color: white;
     overflow: hidden;
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* flex-direction: column; */
 }
 h1{
     margin: auto 20px;
@@ -79,8 +75,6 @@ footer{
 }
 .form-tag{
     display: inline-block;
-    
-    /* padding: 50px 50px 10px ; */
 }
 h4{
     color: #93b7cd;
@@ -139,3 +133,4 @@ a:hover{
 .forgot-password .form-control{
     margin: 20px 0;
 }
+

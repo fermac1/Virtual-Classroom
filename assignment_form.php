@@ -1,10 +1,10 @@
 <?php
 include('student_dashboard.php');
 ?>
-<div class="container assignment sub-section not-dashboard">
+<div class="assignment" >
     <h4>Assignment</h4>
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="row main-row">
+        <div class="col-lg-12 col-md-4 col-sm-10">
         <?php include('assignment.php'); $statusMsg='';?>
         <form action="" method="post" enctype="multipart/form-data">
 
@@ -31,8 +31,8 @@ include('student_dashboard.php');
             <div class="col-lg-4 col-md-4 col-sm-3">
             <label for=""><b>Description:</b> </label>
             </div>
-            <div class="col-lg-8 col-md-6 col-sm-4">
-            <textarea name="description" id="description" cols="50" rows="10"></textarea>
+            <div class="col-lg-8 col-md-6 col-sm-6">
+            <textarea name="description" id="description" cols="20" rows="10"></textarea>
             </div>
         </div>
 

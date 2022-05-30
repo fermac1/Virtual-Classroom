@@ -1,0 +1,42 @@
+/*library*/
+.folder{
+    margin: auto;
+    text-align: center;
+}
+.folder-paragraph{
+    color: rgb(156, 154, 154);
+    font-weight: bolder;
+    text-align: center;
+    margin: auto;
+}
+#library-form{
+    margin: 10px auto 20px;
+}
+.dropdown-menu{
+    margin-top: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+#file-row:hover{
+    color: #28819d;
+    cursor: pointer;
+}
+  /* assignment */
+.assign-col{
+    padding: 10px;
+}
+.notification-file{
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+.notification-file:hover{
+    color: #28819d;
+}
+  /* course details */
+.course-details{
+    text-align: justify;
+}
+.course-details .row{
+    margin-bottom: 10px;
+}

@@ -1,6 +1,6 @@
 <?php
 include('connect.php');
-
+$msg='';
     if(isset($_POST['submit'])){
       
         $firstname = $_POST['first_name'];
@@ -9,7 +9,7 @@ include('connect.php');
         $password = $_POST['password'];
         $role = $_POST['role'];
         $gender = $_POST['gender'];
-        
+
         $pass = md5($password);
         
 
@@ -20,30 +20,27 @@ include('connect.php');
 
         if($user){
             if($user['email'] === $email){
-                echo "email already exists";
+                $msg= "<div class='alert alert-warning' role='alert'>
+                email already exists.
+              </div>";
             }
         } 
 
             //add user data if there are no errors
         if(mysqli_num_rows($result) == 0){
-        $sql = "INSERT INTO users (first_name, last_name, password, email,gender, role)
-            VALUES ('$firstname', '$lastname', '$pass', '$email', '$gender', '$role')";
+        $sql = "INSERT INTO users (first_name, last_name, password, email,gender, role, image)
+            VALUES ('$firstname', '$lastname', '$pass', '$email', '$gender', '$role', '')";
         
 
         if (mysqli_query($conn, $sql)){
-            header("location: index.php");
+        //     echo "<div class='alert alert-success' role='alert'>
+        //     sign up successful. Go ahead and login.
+        //   </div>";
+            header("location: login_page.php");
                 die;
         }else{
             echo "error:". $sql. "" .mysqli_error($conn);
         }
-
-            // //read from database
-            // $sql = "SELECT email FROM users WHERE email = '$email' limit 1";
-        
-            // $result = mysqli_query($conn, $sql);
-            // $user_data = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            // $count = mysqli_num_rows($result);
-            // mysqli_close($conn);
         
     }
     }
