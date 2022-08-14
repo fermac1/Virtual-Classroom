@@ -59,32 +59,34 @@ echo $msg;
 
                 
 
-                <form action="" method="post">
-                <div class="row">
-                <div class="col-md-6">
+<form action="" method="post">
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-6">
                         <div class="form-group">
-                              <label><b>Old password</b></label>
+                              <label>Old password</label>
                               <input type="password" class="form-control" name="old_password" required>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="margin-bottom: 10px;">
                     <div class="col-md-6">
                         <div class="form-group">
-                              <label><b>New password</b></label>
+                              <label>New password</label>
                               <input type="password" class="form-control" name="new_password" required>
                         </div>
                     </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
                     <div class="col-md-6">
                         <div class="form-group">
-                              <label><b>Confirm new password</b></label>
+                              <label>Confirm new password</label>
                               <input type="password" class="form-control" name="confirm_newpassword" required>
                         </div>
                     </div>
                 </div>
                 <div>
                     <button class="btn btn-primary btnBox" name="change">Update</button>
-                  
+                    
                 </div>
                 </form>
 </div>

@@ -63,10 +63,6 @@ include('image_upload.php');
             <a class="" href="teacher_course_list.php">
                   <i class="fa fa-gear fa-fw"></i> Course List</a>
             </li>
-            <li class="list-group-item showMenu myList" aria-current="true">
-            <a class="" href="schedule_sidebar.php">
-                  <i class="fa fa-gear fa-fw"></i> Class Schedule</a>
-            </li>
         </ul> 
             </li>
 
@@ -78,8 +74,7 @@ include('image_upload.php');
         </a>
         <ul class="list-group sub-menu" id="menu2">
           <li class="list-group-item showMenu" aria-current="true">
-          <a href="">
-             
+          <a href="general_library.php">
               <i class="fa fa-user fa-fw"></i> General Library</a>
             </li>
             <li class="list-group-item showMenu" aria-current="true">

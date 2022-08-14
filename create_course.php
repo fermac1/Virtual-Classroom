@@ -1,7 +1,7 @@
 <?php
         $statusMsg='';
         $id = $_SESSION['id'];
-    
+
                 //upload courses to database
                 if(isset($_POST['create'])){
                     
@@ -26,6 +26,8 @@
                             $statusMsg = "<div class='alert alert-success' role='alert'>
                             Course has been created successfully.
                           </div>";
+                          //automatically create a folder for created course in the general library
+                          mkdir("general-library/" . $coursecode);
                         }else{
                             $statusMsg = "<div class='alert alert-danger' role='alert'>
                         Course not created.</div>";

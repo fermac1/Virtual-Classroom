@@ -27,5 +27,3 @@
       <hr class="schedule-hr">
     </div>
 
-
-    <script src="AgoraRTC_N-4.7.3.js?v=<?php echo time(); ?>"></script>

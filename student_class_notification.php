@@ -47,7 +47,3 @@
 </form>
 
 <hr class="notification-hr">
-
-
-
-<script src="AgoraRTC_N-4.7.3.js?v=<?php echo time(); ?>"></script>

@@ -160,7 +160,7 @@ h2, h3, h4{
 .not-dashboard{
     width: 50%;
 }
-.assignment{
+.assignment, .assignment-form{
     padding-top: 104px;
 }
 
@@ -274,7 +274,12 @@ h2, h3, h4{
     border: 1px solid #0a3c49;
     margin: 10px 0;
 }
-.schedule-button:hover, .assignment-button:hover, .course-details-btn:hover{
+#open-attendance{
+    border-radius: 5px;
+    padding: 0 10px;
+    border: 1px solid #0a3c49;
+}
+.schedule-button:hover, .assignment-button:hover, .course-details-btn:hover,  #open-attendance:hover{
     background: transparent;
     color: #0a3c49;
 }

@@ -1,7 +1,6 @@
 <?php
 $sql = "SELECT * FROM users WHERE id=".$id;
-        $result = $conn->query($sql);
-        
+        $result = $conn->query($sql);  
         
         if ($result->num_rows > 0) {
             // output data of each row

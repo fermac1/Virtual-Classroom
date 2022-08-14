@@ -3,11 +3,9 @@ include('student_dashboard.php');
 
 ?>
 
-
-
 <div class="library-data sub-section not-dashboard">
   <h3>Personal Library</h3>
- <?php include('library.php'); ?>
+ <?php include('personal_library.php'); ?>
   <form action="" method="post" enctype="multipart/form-data" id="library-form" >
     <input type="file" name="input_file" id="input_file" />
     <!-- <input type="button" id="btnid" name="file_upload" value="upload"> -->
@@ -23,8 +21,8 @@ include('student_dashboard.php');
                   $fileName = $row["file_name"];
                   $file_id = $row['id'];
 
-// include('display_library.php'); 
-include('display_library.php'); 
+
+  include('display_personal_library.php'); 
 
               }               
 

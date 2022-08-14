@@ -9,7 +9,7 @@
     text-align: center;
     margin: auto;
 }
-#library-form{
+.library-form{
     margin: 10px auto 20px;
 }
 .dropdown-menu{
@@ -17,8 +17,10 @@
     padding-top: 0;
     padding-bottom: 0;
 }
-#file-row:hover{
-    color: #28819d;
+.file-list:hover{
+    background: #f5f5f5;
+}
+.file-list:hover, #file-row:hover{
     cursor: pointer;
 }
   /* assignment */
@@ -33,10 +35,11 @@
 .notification-file:hover{
     color: #28819d;
 }
+
   /* course details */
 .course-details{
     text-align: justify;
 }
 .course-details .row{
     margin-bottom: 10px;
-}
+} 

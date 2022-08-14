@@ -1,10 +1,17 @@
-#course-row, #file-row, #modal-input, .modal-input, .coursecode-row, .schedule-course{
+#course-row, #file-row, #modal-input, .modal-input, .coursecode-row, .schedule-course, #general-library-course, #student-general-library-course{
     border: none;
     background: transparent;
 }
-#course-row:focus, #file-row:focus, #modal-input:focus, .modal-input:focus, .coursecode-row:focus, .schedule-course:focus{
+#course-row:focus, #file-row:focus, #modal-input:focus, .modal-input:focus, .coursecode-row:focus, .schedule-course:focus, #general-library-course:focus, #student-general-library-course:focus{
     background: transparent;
     outline: none;
+}
+#general-library-course, #student-general-library-course{
+    font-weight: 600;
+    font-size: 20px;
+}
+#student-general-library-course{
+    margin-bottom: 10px;
 }
 #file-row{
     word-wrap: break-word;

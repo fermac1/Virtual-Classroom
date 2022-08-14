@@ -78,8 +78,7 @@ include('image_upload.php');
         </a>
         <ul class="list-group sub-menu" id="menu2">
           <li class="list-group-item showMenu" aria-current="true">
-          <a href="#">
-             
+          <a href="student_general_library.php">            
               <i class="fa fa-user fa-fw"></i> General Library</a>
             </li>
             <li class="list-group-item showMenu" aria-current="true">

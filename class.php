@@ -2,7 +2,28 @@
     include('connect.php');
     include('session.php');
     include('user.php');
-    include("token.php");
+    include("teacher_token.php");
+
+    if(isset($_SESSION['course_code'])){
+        if(isset($_POST['json'])){
+        $student_id = $_POST['json'];
+    
+        $coursecode = $_SESSION['course_code'];
+        $time = date("h:i:sa");
+        $date = date("Y/m/d");
+       
+        $check = mysqli_query($conn, "SELECT * FROM attendance WHERE course_code = '$coursecode' AND student_id = '$student_id'");
+        if(mysqli_num_rows($check) > 0){
+            //update if class data exist
+            $update = mysqli_query($conn, "UPDATE attendance SET time = '$time' WHERE course_code = '$coursecode' AND student_id = '$student_id'");
+            echo $student_id;
+            
+        }else{
+            $sql = mysqli_query($conn, "INSERT INTO `attendance` (`course_code`, `student_id`, `date`, `time`)
+            VALUES ('$coursecode', '$student_id', '$date', '$time')");
+        }
+        }
+    }
 
 ?>
 <!DOCTYPE html>
@@ -10,54 +31,64 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Ivy Streams</title>
+    <title>Class</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css?v=<?php echo time(); ?>'>
 </head>
 <body>
-
-    <button id="join-btn">Join Stream</button>
-
+ 
     <div id="stream-wrapper">
-        <div id="video-streams"></div>
+        <div id="video-streams">
+            <div id="student-area"></div>
+        </div>
 
         <div id="stream-controls">
             <button id="leave-btn">Leave Stream</button>
             <button id="mic-btn">Mic On</button>
             <button id="camera-btn">Camera on</button>
-            <form onUnload="attendance.php" method="post">
-                <button type="submit" name="attendance">Attendance</button>
-            </form>
+            <button name="attendance" id="attendance">Attendance</button>    
+            <button  id="share">Share</button>   
         </div>
     </div>
     
 </body>
-<!-- <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script> -->
-<script src="AgoraRTC_N-4.7.3.js"></script>
-<script>
-    const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 
+<script src="src/AgoraRTC_N-4.7.3.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script>
+    'use strict'
+    const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 let localTracks = []
 let remoteUsers = {}
 
+
 let joinAndDisplayLocalStream = async () => {
     client.on('user-published', handleUserJoined)
+
+    client.on('stream-added', handlePeerJoined)
     
     client.on('user-left', handleUserLeft)
 
-    
-    let UID = await client.join('<?php echo $appID; ?>' , '<?php echo $channelName; ?>', '<?php echo $token;?>', <?php echo $uid;?>)
 
-    console.log(UID)
-    console.log('this is me')
-    console.log(remoteUsers)
+//     client.setClientRole("host", function(e) {
+//   if (!e) {
+//     console.log("setHost success");
+//   } else {
+//     console.log("setHost error", e);
+//   }
+// });
+
+
+    let UID = await client.join('<?php echo $appID; ?>' , '<?php echo $channelName; ?>', '<?php echo $token;?>', <?php echo $uid;?>)    
 
     localTracks = await AgoraRTC.createMicrophoneAndCameraTracks() 
 
     let player = `<div class="video-container" id="user-container-${UID}">
                         <div class="video-player" id="user-${UID}"></div>
                 </div>`
-    document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
+    document.getElementById('video-streams').insertAdjacentHTML('afterbegin', player)
 
     localTracks[1].play(`user-${UID}`)
     
@@ -65,18 +96,55 @@ let joinAndDisplayLocalStream = async () => {
 }
 
 let joinStream = async () => {
-    console.log({"remote users": remoteUsers})
     await joinAndDisplayLocalStream()
-    document.getElementById('join-btn').style.display = 'none'
-   
+
     document.getElementById('stream-controls').style.display = 'flex'
 }
 
+let handlePeerJoined = async (user) => {
+    console.log("it came here")
+    console.log(user)
+}
+
+
+
 //another user joining
 let handleUserJoined = async (user, mediaType) => {
-    remoteUsers[user.uid] = user 
+
+    remoteUsers[user.uid] = user;
+
+    console.log({"uid": user.uid})
+
+
     console.log({"User Joined": remoteUsers})
-    await client.subscribe(user, mediaType)
+
+    let json = Object.keys(remoteUsers)[0];
+
+    let add = '<?php echo $uid; ?>'
+    const last1 = add.slice(-1); 
+    console.log(last1);
+
+    const last = json.slice(-1); 
+    // console.log(last);
+    console.log({'check json':last})
+
+    console.log(json)
+    
+    $("#attendance").click(function(){
+    $.ajax({
+    type: "POST",
+    data: {json: json},
+    url: '',
+    success: function (result) {
+        $("#result").html(result);
+        document.getElementById('attendance').style.backgroundColor = '#0a3c49'
+    }
+   });
+
+    });
+
+
+    await client.subscribe(user, mediaType);
 
     if (mediaType === 'video'){
         let player = document.getElementById(`user-container-${user.uid}`)
@@ -87,7 +155,7 @@ let handleUserJoined = async (user, mediaType) => {
         player = `<div class="video-container" id="user-container-${user.uid}">
                         <div class="video-player" id="user-${user.uid}"></div> 
                 </div>`
-        document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
+        document.getElementById('student-area').insertAdjacentHTML('beforeend', player)
 
         user.videoTrack.play(`user-${user.uid}`)
     }
@@ -95,7 +163,34 @@ let handleUserJoined = async (user, mediaType) => {
     if (mediaType === 'audio'){
         user.audioTrack.play()
     }
+
 }
+
+
+//share screen
+async function startScreenCall() {
+    const screenClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" , role: 'host'});
+    await screenClient.join('<?php echo $appID; ?>' , '<?php echo $channelName; ?>', '<?php echo $token;?>', <?php echo $uid;?>);
+    
+  
+    const screenTrack = await AgoraRTC.createScreenVideoTrack();
+    // screenTrack[1].play(`user-${UID}`)
+    await screenClient.publish(screenTrack);
+  
+    return screenClient;
+  }
+
+// let share = async (user) => { 
+//     AgoraRTC.createScreenVideoTrack({
+//     // Set the encoder configurations. For details, see the API description.
+//     encoderConfig: "1080p_1",
+//     // Set the video transmission optimization mode as prioritizing video quality.
+//     optimizationMode: "detail",
+// }).then(localScreenTrack => {
+//   /** ... **/
+//   console.log("Started sharing")
+//
+// })};
 
 // when user leaves stream
 let handleUserLeft = async (user) => {
@@ -110,10 +205,12 @@ let leaveAndRemoveLocalStream = async () => {
     }
 
     await client.leave()
-    document.getElementById('join-btn').style.display = 'block'
     document.getElementById('stream-controls').style.display = 'none'
     document.getElementById('video-streams').innerHTML = ''
+    history.go(-1)
 }
+
+
 
 let toggleMic = async (e) => {
     if (localTracks[0].muted){
@@ -123,7 +220,7 @@ let toggleMic = async (e) => {
     }else{
         await localTracks[0].setMuted(true)
         e.target.innerText = 'Mic off'
-        e.target.style.backgroundColor = '#EE4B2B'
+        e.target.style.backgroundColor = '#0a3c49'
     }
 }
 
@@ -135,13 +232,14 @@ let toggleCamera = async (e) => {
     }else{
         await localTracks[1].setMuted(true)
         e.target.innerText = 'Camera off'
-        e.target.style.backgroundColor = '#EE4B2B'
+        e.target.style.backgroundColor = '#0a3c49'
     }
 }
 
-document.getElementById('join-btn').addEventListener('click', joinStream)
-document.getElementById('leave-btn').addEventListener('click', leaveAndRemoveLocalStream)
-document.getElementById('mic-btn').addEventListener('click', toggleMic)
-document.getElementById('camera-btn').addEventListener('click', toggleCamera)
-</script>
+    document.getElementById('leave-btn').addEventListener('click', leaveAndRemoveLocalStream)
+    document.getElementById('mic-btn').addEventListener('click', toggleMic)
+    document.getElementById('camera-btn').addEventListener('click', toggleCamera)
+    document.getElementById('share').addEventListener('click', startScreenCall)
 
+    joinStream()
+</script>
