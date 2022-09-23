@@ -43,7 +43,7 @@
             <button id="leave-btn">Leave Stream</button>
             <button id="mic-btn">Mic On</button>
             <button id="camera-btn">Camera on</button>
-            <button id="get-user-btn" name="get-user-btn">Get user</button>
+            <!-- <button id="get-user-btn" name="get-user-btn">Get user</button> -->
         </div>
     </div>
     

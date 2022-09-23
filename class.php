@@ -5,23 +5,35 @@
     include("teacher_token.php");
 
     if(isset($_SESSION['course_code'])){
-        if(isset($_POST['json'])){
-        $student_id = $_POST['json'];
+        // if(isset($_POST['json'])){
+        // $student_id = $_POST['json'];
     
-        $coursecode = $_SESSION['course_code'];
-        $time = date("h:i:sa");
-        $date = date("Y/m/d");
+        // $coursecode = $_SESSION['course_code'];
+        // $time = date("h:i:sa");
+        // $date = date("Y/m/d");
        
-        $check = mysqli_query($conn, "SELECT * FROM attendance WHERE course_code = '$coursecode' AND student_id = '$student_id'");
-        if(mysqli_num_rows($check) > 0){
-            //update if class data exist
-            $update = mysqli_query($conn, "UPDATE attendance SET time = '$time' WHERE course_code = '$coursecode' AND student_id = '$student_id'");
-            echo $student_id;
+        // $check = mysqli_query($conn, "SELECT * FROM attendance WHERE course_code = '$coursecode' AND student_id = '$student_id'");
+        // if(mysqli_num_rows($check) > 0){
+        //     //update if class data exist
+        //     $update = mysqli_query($conn, "UPDATE attendance SET time = '$time' WHERE course_code = '$coursecode' AND student_id = '$student_id'");
+        //     echo $student_id;
             
-        }else{
-            $sql = mysqli_query($conn, "INSERT INTO `attendance` (`course_code`, `student_id`, `date`, `time`)
-            VALUES ('$coursecode', '$student_id', '$date', '$time')");
-        }
+        // }else{
+        //     $sql = mysqli_query($conn, "INSERT INTO `attendance` (`course_code`, `student_id`, `date`, `time`)
+        //     VALUES ('$coursecode', '$student_id', '$date', '$time')");
+        // }
+        // }
+
+        if(isset($_POST['remote_user'])){ 
+            $remoteuser_id = $_POST['remote_user']; 
+            $user = mysqli_query($conn, "SELECT * FROM users WHERE id= '$remoteuser_id' ");
+                        if(mysqli_num_rows($user) > 0){
+
+                            while($row = mysqli_fetch_assoc($user)){
+                                $remote_firstname = $row['first_name'];
+                                
+                            }
+                        }
         }
     }
 
@@ -39,9 +51,9 @@
  
     <div id="stream-wrapper">
         <div id="video-streams">
-            <div id="student-area"></div>
+            <!-- <div id="student-area"></div> -->
         </div>
-
+        <div id="msg">flash message</div>
         <div id="stream-controls">
             <button id="leave-btn">Leave Stream</button>
             <button id="mic-btn">Mic On</button>
@@ -107,10 +119,52 @@ let handlePeerJoined = async (user) => {
 }
 
 
+function asyncAjax(user){
+    console.log("This is the async Ajax")
+    return new Promise(function(resolve, reject) {
+            $.ajax({
+                type: "POST",
+        data: {remote_user: user},
+        url: '',
+                success: function(data) {
+                    console.log({'check automatic json': data})
+                    resolve(data) // Resolve promise and when success
+                    
+                },
+                error: function(err) {
+                    reject(err) // Reject the promise and go to catch()
+                }
+            });
+    });
+}
+
+function showUser(uid, fullname) {
+    // let fullname 
+  if (uid == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        //   console.log(this.responseText)
+        fullname = this.responseText
+        // console.log(fullname)
+        // document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+      return fullname
+    };
+    xmlhttp.open("GET","getuser.php?q="+uid,true);
+    xmlhttp.send();
+
+    
+  }
+  
+}
 
 //another user joining
 let handleUserJoined = async (user, mediaType) => {
-
+    let fullname 
     remoteUsers[user.uid] = user;
 
     console.log({"uid": user.uid})
@@ -119,7 +173,35 @@ let handleUserJoined = async (user, mediaType) => {
     console.log({"User Joined": remoteUsers})
 
     let json = Object.keys(remoteUsers)[0];
+    let remote_user = user.uid;
 
+    
+    // const result = showUser(json, fullname)
+
+    // console.log(result)
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        //   console.log(this.responseText)
+        fullname = this.responseText
+        
+        let flashMessage = fullname +' '+'joined'
+        console.log(flashMessage)
+
+        $("#msg").html(flashMessage).fadeIn(function() {
+    setTimeout(function() {
+        $("#msg").html(flashMessage).fadeOut();
+    }, 5000);
+});
+        // document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+      
+    };
+    xmlhttp.open("GET","getuser.php?q="+json,true);
+    xmlhttp.send();
+
+    // console.log({fullname})
     let add = '<?php echo $uid; ?>'
     const last1 = add.slice(-1); 
     console.log(last1);
@@ -137,12 +219,44 @@ let handleUserJoined = async (user, mediaType) => {
     url: '',
     success: function (result) {
         $("#result").html(result);
+        console.log(result)
         document.getElementById('attendance').style.backgroundColor = '#0a3c49'
     }
    });
 
     });
 
+
+    
+             //automatically click button to see user who joined       
+            //  $.ajax({
+            //     type: "POST",
+            //     data: {remote_user: remote_user},
+            //     url: '',
+            //     success: function (result) {
+            //         $("#result").html(result);
+            //             console.log({'check automatic json':remote_user})
+            //             console.log('yesssssss')
+            //     }
+            // });
+
+            // $(document).ready(function(){
+
+            // setTimeout(function(){
+
+            //     $("#get-user-btn").click();
+
+            // },1);
+
+            // });
+
+
+            // try{
+            // const result = await asyncAjax(remote_user);
+            // // console.log(result)
+            // } catch(e){
+            // console.log(e);
+            // }
 
     await client.subscribe(user, mediaType);
 
@@ -152,10 +266,11 @@ let handleUserJoined = async (user, mediaType) => {
             player.remove()
         }
 
+
         player = `<div class="video-container" id="user-container-${user.uid}">
                         <div class="video-player" id="user-${user.uid}"></div> 
                 </div>`
-        document.getElementById('student-area').insertAdjacentHTML('beforeend', player)
+        document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
 
         user.videoTrack.play(`user-${user.uid}`)
     }
