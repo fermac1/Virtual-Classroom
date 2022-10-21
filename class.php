@@ -5,36 +5,25 @@
     include("teacher_token.php");
 
     if(isset($_SESSION['course_code'])){
-        // if(isset($_POST['json'])){
-        // $student_id = $_POST['json'];
+        if(isset($_POST['json'])){
+        $student_id = $_POST['json'];
     
-        // $coursecode = $_SESSION['course_code'];
-        // $time = date("h:i:sa");
-        // $date = date("Y/m/d");
+        $coursecode = $_SESSION['course_code'];
+        $time = date("h:i:sa");
+        $date = date("Y/m/d");
        
-        // $check = mysqli_query($conn, "SELECT * FROM attendance WHERE course_code = '$coursecode' AND student_id = '$student_id'");
-        // if(mysqli_num_rows($check) > 0){
-        //     //update if class data exist
-        //     $update = mysqli_query($conn, "UPDATE attendance SET time = '$time' WHERE course_code = '$coursecode' AND student_id = '$student_id'");
-        //     echo $student_id;
+        $check = mysqli_query($conn, "SELECT * FROM attendance WHERE course_code = '$coursecode' AND student_id = '$student_id'");
+        if(mysqli_num_rows($check) > 0){
+            //update if class data exist
+            $update = mysqli_query($conn, "UPDATE attendance SET time = '$time' WHERE course_code = '$coursecode' AND student_id = '$student_id'");
+            echo $student_id;
             
-        // }else{
-        //     $sql = mysqli_query($conn, "INSERT INTO `attendance` (`course_code`, `student_id`, `date`, `time`)
-        //     VALUES ('$coursecode', '$student_id', '$date', '$time')");
-        // }
-        // }
-
-        if(isset($_POST['remote_user'])){ 
-            $remoteuser_id = $_POST['remote_user']; 
-            $user = mysqli_query($conn, "SELECT * FROM users WHERE id= '$remoteuser_id' ");
-                        if(mysqli_num_rows($user) > 0){
-
-                            while($row = mysqli_fetch_assoc($user)){
-                                $remote_firstname = $row['first_name'];
-                                
-                            }
-                        }
+        }else{
+            $sql = mysqli_query($conn, "INSERT INTO `attendance` (`course_code`, `student_id`, `date`, `time`)
+            VALUES ('$coursecode', '$student_id', '$date', '$time')");
         }
+        }
+
     }
 
 ?>
@@ -46,20 +35,21 @@
     <title>Class</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css?v=<?php echo time(); ?>'>
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
  
     <div id="stream-wrapper">
         <div id="video-streams">
-            <!-- <div id="student-area"></div> -->
         </div>
         <div id="msg">flash message</div>
         <div id="stream-controls">
-            <button id="leave-btn">Leave Stream</button>
-            <button id="mic-btn">Mic On</button>
-            <button id="camera-btn">Camera on</button>
-            <button name="attendance" id="attendance">Attendance</button>    
-            <button  id="share">Share</button>   
+            <button title="Leave Stream"><i class="bx bx-log-out" id="leave-btn"></i> </button>
+            <button><i class='bx bx-microphone' id="mic-btn"></i></button>
+            <button><i class='bx bx-video' id="camera-btn"></i></button>
+            <button name="attendance" title="Attendance"><i class='bx bx-user-check' id="attendance"></i></button>   
+            <button title="Share screen"><i class='bx bx-share-alt' id="share"></i></button>   
         </div>
     </div>
     
@@ -82,15 +72,6 @@ let joinAndDisplayLocalStream = async () => {
     client.on('stream-added', handlePeerJoined)
     
     client.on('user-left', handleUserLeft)
-
-
-//     client.setClientRole("host", function(e) {
-//   if (!e) {
-//     console.log("setHost success");
-//   } else {
-//     console.log("setHost error", e);
-//   }
-// });
 
 
     let UID = await client.join('<?php echo $appID; ?>' , '<?php echo $channelName; ?>', '<?php echo $token;?>', <?php echo $uid;?>)    
@@ -119,24 +100,24 @@ let handlePeerJoined = async (user) => {
 }
 
 
-function asyncAjax(user){
-    console.log("This is the async Ajax")
-    return new Promise(function(resolve, reject) {
-            $.ajax({
-                type: "POST",
-        data: {remote_user: user},
-        url: '',
-                success: function(data) {
-                    console.log({'check automatic json': data})
-                    resolve(data) // Resolve promise and when success
+// function asyncAjax(user){
+//     console.log("This is the async Ajax")
+//     return new Promise(function(resolve, reject) {
+//             $.ajax({
+//                 type: "POST",
+//         data: {remote_user: user},
+//         url: '',
+//                 success: function(data) {
+//                     console.log({'check automatic json': data})
+//                     resolve(data) // Resolve promise and when success
                     
-                },
-                error: function(err) {
-                    reject(err) // Reject the promise and go to catch()
-                }
-            });
-    });
-}
+//                 },
+//                 error: function(err) {
+//                     reject(err) // Reject the promise and go to catch()
+//                 }
+//             });
+//     });
+// }
 
 function showUser(uid, fullname) {
     // let fullname 
@@ -220,43 +201,21 @@ let handleUserJoined = async (user, mediaType) => {
     success: function (result) {
         $("#result").html(result);
         console.log(result)
-        document.getElementById('attendance').style.backgroundColor = '#0a3c49'
+        document.getElementById('attendance').style.color = '#0a3c49'
+        document.getElementById('attendance').classList.add('bx-user-check')
+        document.getElementById('attendance').classList.remove('bx-user')
+        
+        $("#msg").html('Attendance taken successfully').fadeIn(function() {
+    setTimeout(function() {
+        $("#msg").html('Attendance taken successfully').fadeOut();
+    }, 5000);
+});
+
     }
-   });
+    })
 
     });
 
-
-    
-             //automatically click button to see user who joined       
-            //  $.ajax({
-            //     type: "POST",
-            //     data: {remote_user: remote_user},
-            //     url: '',
-            //     success: function (result) {
-            //         $("#result").html(result);
-            //             console.log({'check automatic json':remote_user})
-            //             console.log('yesssssss')
-            //     }
-            // });
-
-            // $(document).ready(function(){
-
-            // setTimeout(function(){
-
-            //     $("#get-user-btn").click();
-
-            // },1);
-
-            // });
-
-
-            // try{
-            // const result = await asyncAjax(remote_user);
-            // // console.log(result)
-            // } catch(e){
-            // console.log(e);
-            // }
 
     await client.subscribe(user, mediaType);
 
@@ -267,10 +226,10 @@ let handleUserJoined = async (user, mediaType) => {
         }
 
 
-        player = `<div class="video-container" id="user-container-${user.uid}">
-                        <div class="video-player" id="user-${user.uid}"></div> 
-                </div>`
-        document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
+        // player = `<div class="video-container" id="user-container-${user.uid}">
+        //                 <div class="video-player" id="user-${user.uid}"></div> 
+        //         </div>`
+        // document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
 
         user.videoTrack.play(`user-${user.uid}`)
     }
@@ -283,34 +242,59 @@ let handleUserJoined = async (user, mediaType) => {
 
 
 //share screen
-async function startScreenCall() {
-    const screenClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" , role: 'host'});
-    await screenClient.join('<?php echo $appID; ?>' , '<?php echo $channelName; ?>', '<?php echo $token;?>', <?php echo $uid;?>);
+// async function startScreenCall() {
+//     const screenClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" , role: 'host'});
+//     await screenClient.join(');
     
   
-    const screenTrack = await AgoraRTC.createScreenVideoTrack();
-    // screenTrack[1].play(`user-${UID}`)
-    await screenClient.publish(screenTrack);
+//     const screenTrack = await AgoraRTC.createScreenVideoTrack();
+//     // screenTrack[1].play(`user-${UID}`)
+//     await screenClient.publish(screenTrack);
   
-    return screenClient;
-  }
+//     return screenClient;
+//   }
 
-// let share = async (user) => { 
-//     AgoraRTC.createScreenVideoTrack({
-//     // Set the encoder configurations. For details, see the API description.
-//     encoderConfig: "1080p_1",
-//     // Set the video transmission optimization mode as prioritizing video quality.
-//     optimizationMode: "detail",
-// }).then(localScreenTrack => {
-//   /** ... **/
-//   console.log("Started sharing")
-//
-// })};
+let share = async (user) => { 
+    AgoraRTC.createScreenVideoTrack({
+    // Set the encoder configurations. For details, see the API description.
+    encoderConfig: "1080p_1",
+    // Set the video transmission optimization mode as prioritizing video quality.
+    optimizationMode: "detail",
+}).then(localScreenTrack => {
+  /** ... **/
+  console.log("Started sharing")
+
+})};
+
 
 // when user leaves stream
 let handleUserLeft = async (user) => {
+    remoteUsers[user.uid] = user
+    let json = Object.keys(remoteUsers)[0];
     delete remoteUsers[user.uid]
-    document.getElementById(`user-container-${user.uid}`).remove()
+    console.log('deleye', json);
+    // document.getElementById(`user-container-${user.uid}`).remove()
+
+       
+    //flash message
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        fullname = this.responseText
+
+    let flashMessage = fullname +' '+'left'
+
+    $("#msg").html(flashMessage).fadeIn(function() {
+    setTimeout(function() {
+        $("#msg").html(flashMessage).fadeOut();
+        }, 5000);
+        });
+    }
+
+    };
+    xmlhttp.open("GET","student-getuser.php?q="+json,true);
+    xmlhttp.send();
+    //end flash message
 }
 
 let leaveAndRemoveLocalStream = async () => {
@@ -330,31 +314,35 @@ let leaveAndRemoveLocalStream = async () => {
 let toggleMic = async (e) => {
     if (localTracks[0].muted){
         await localTracks[0].setMuted(false)
-        e.target.innerText = 'Mic on'
-        e.target.style.backgroundColor = 'cadetblue'
+        e.target.classList.add('bx-microphone')
+        e.target.classList.remove('bx-microphone-off')
+        e.target.style.color = '#ffffff'
     }else{
         await localTracks[0].setMuted(true)
-        e.target.innerText = 'Mic off'
-        e.target.style.backgroundColor = '#0a3c49'
+        e.target.classList.add('bx-microphone-off')
+        e.target.classList.remove('bx-microphone')
+        e.target.style.color = '#0a3c49'
     }
 }
 
 let toggleCamera = async (e) => {
     if(localTracks[1].muted){
         await localTracks[1].setMuted(false)
-        e.target.innerText = 'Camera on'
-        e.target.style.backgroundColor = 'cadetblue'
+        e.target.classList.add('bx-video')
+        e.target.classList.remove('bx-video-off')
+        e.target.style.color = '#ffffff'
     }else{
         await localTracks[1].setMuted(true)
-        e.target.innerText = 'Camera off'
-        e.target.style.backgroundColor = '#0a3c49'
+        e.target.classList.add('bx-video-off')
+        e.target.classList.remove('bx-video')
+        e.target.style.color = '#0a3c49'
     }
 }
 
     document.getElementById('leave-btn').addEventListener('click', leaveAndRemoveLocalStream)
     document.getElementById('mic-btn').addEventListener('click', toggleMic)
     document.getElementById('camera-btn').addEventListener('click', toggleCamera)
-    document.getElementById('share').addEventListener('click', startScreenCall)
+    document.getElementById('share').addEventListener('click', share)
 
     joinStream()
 </script>

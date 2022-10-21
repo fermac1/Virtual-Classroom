@@ -3,7 +3,7 @@
     // include('user.php');
     require_once("src/RtcTokenBuilder.php");
 
-    $teacher = 1;
+    
     $sql = "SELECT * FROM users WHERE id=".$id;
     $result = $conn->query($sql);
     
@@ -31,7 +31,7 @@
         $appID = "4f0abe39265b404da31f532980da8827";
         $appCertificate = "57fc8298c5994804af3167578ba99806";
         $channelName = $coursecode;
-        $uid =  $userID.$teacher;
+        $uid =  $userID;
         $uidStr = "$userID";
         $role = RtcTokenBuilder::RolePublisher;
         $dbRole = $userID.$db_role;

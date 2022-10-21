@@ -2,7 +2,8 @@
     include('connect.php');
     include('session.php');
     include('user.php');
-    include("teacher_token.php");
+    include("student_token.php");
+    
     $q=$_GET["q"];
 
     $user = mysqli_query($conn, "SELECT * FROM users WHERE id= '$q'");

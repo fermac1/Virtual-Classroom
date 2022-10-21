@@ -18,7 +18,7 @@ include('login_data.php');
         <h1>Virtual Classroom</h1>
         <div class="row">
             <div class="col-lg-5 col-md-6 col-sm-10">
-                <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium repellendus sunt pariatur. Delectus debitis pariatur tenetur cum placeat perspiciatis velit, quasi nemo laboriosam maiores laborum similique quibusdam sunt odio consequatur.</p>
+                <p class="text">An online learning environment that enables real-time and offline activities between the tutor and students. Join today and learn anywhere, anytime with ease.</p>
                
                 <button id="signupbtn">SignUp</button>
                 <button id="loginbtn">Login</button>

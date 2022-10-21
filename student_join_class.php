@@ -31,6 +31,8 @@
     <title>Class</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css?v=<?php echo time(); ?>'>
+       <!-- Boxicons CDN Link -->
+       <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
@@ -39,11 +41,11 @@
             <div id="student-area"></div>
         </div>
 
+<div id="msg"></div>
         <div id="stream-controls">
-            <button id="leave-btn">Leave Stream</button>
-            <button id="mic-btn">Mic On</button>
-            <button id="camera-btn">Camera on</button>
-            <!-- <button id="get-user-btn" name="get-user-btn">Get user</button> -->
+            <button title="Leave Stream"><i class="bx bx-log-out" id="leave-btn"></i> </button>
+            <button><i class='bx bx-microphone' id="mic-btn"></i></button>
+            <button><i class='bx bx-video' id="camera-btn"></i></button>
         </div>
     </div>
     
@@ -84,13 +86,13 @@ let joinAndDisplayLocalStream = async () => {
     let role = '<?php echo $role; ?>'
     // options.role = "audience";
     
-    let player = `<div class="student-container" id="user-container-${UID}">
-                        <div class="video-player" id="user-${UID}"></div>
-                </div>`
-    document.getElementById('student-area').insertAdjacentHTML('beforeend', player)
+    // let player = `<div class="student-container" id="user-container-${UID}">
+    //                     <div class="video-player" id="user-${UID}"></div>
+    //             </div>`
+    // document.getElementById('student-area').insertAdjacentHTML('beforeend', player)
      
 
-    localTracks[1].play(`user-${UID}`)
+    // localTracks[1].play(`user-${UID}`)
     
     await client.publish([localTracks[0], localTracks[1]])
 }
@@ -103,6 +105,8 @@ let joinStream = async () => {
     
 }
 
+
+
 //another user joining
 let handleUserJoined = async (user, mediaType) => {
 
@@ -113,38 +117,29 @@ let handleUserJoined = async (user, mediaType) => {
   
     let json = Object.keys(remoteUsers)[0];
 
-    const last = json.slice(-1); 
- 
-    console.log({'check json last':last})
+    //flash message
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText)
+        fullname = this.responseText
+        
+        let flashMessage = fullname +' '+'joined'
+        console.log(flashMessage)
 
-    console.log({'check json':json})
-
-    // $("#get").click(function(){
-        $.ajax({
-            type: "POST",
-            data: {json: json},
-            url: '',
-            success: function(result){
-                $("#result").html(result);
-                console.log({'check json':json})
-                console.log('yesssssss')
-            }
-        })
-    // });
-
-    $(document).ready(function(){
-
-    setTimeout(function(){
-
-        $("#get-user-btn").click();
+        $("#msg").html(flashMessage).fadeIn(function() {
+    setTimeout(function() {
+        $("#msg").html(flashMessage).fadeOut();
+    }, 5000);
+});
+      }
+      
+    };
+    xmlhttp.open("GET","student-getuser.php?q="+json,true);
+    xmlhttp.send();
+    //end flash message
 
 
-    },1);
-
-    });
-    
-
-    console.log({"User Joined": remoteUsers})
     await client.subscribe(user, mediaType)
 
     if (mediaType === 'video'){
@@ -153,21 +148,19 @@ let handleUserJoined = async (user, mediaType) => {
             player.remove()
         }
 
-        let role = '<?php echo $role; ?>'
-
-        console.log({"role": role})
-        if(last === '1'){
+        
         player = `<div class="video-container" id="user-container-${user.uid}">
                         <div class="video-player" id="user-${user.uid}"></div> 
                 </div>`
         document.getElementById('video-streams').insertAdjacentHTML('beforebegin', player)
-        }else{
-            player = `<div class="student-container" id="user-container-${user.uid}">
-                        <div class="video-player" id="user-${user.uid}"></div> 
-                </div>`
-        document.getElementById('student-area').insertAdjacentHTML('beforeend', player)
+    
+        // else{
+        //     player = `<div class="student-container" id="user-container-${user.uid}">
+        //                 <div class="video-player" id="user-${user.uid}"></div> 
+        //         </div>`
+        // document.getElementById('student-area').insertAdjacentHTML('beforeend', player)
 
-        }
+        // }
 
      
         user.videoTrack.play(`user-${user.uid}`)
@@ -180,8 +173,30 @@ let handleUserJoined = async (user, mediaType) => {
 
 // when user leaves stream
 let handleUserLeft = async (user) => {
+    remoteUsers[user.uid] = user
+    let json = Object.keys(remoteUsers)[0];
     delete remoteUsers[user.uid]
     document.getElementById(`user-container-${user.uid}`).remove()
+ 
+        //flash message
+        var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        fullname = this.responseText
+        
+        let flashMessage = fullname +' '+'left'
+
+        $("#msg").html(flashMessage).fadeIn(function() {
+    setTimeout(function() {
+        $("#msg").html(flashMessage).fadeOut();
+    }, 5000);
+});
+      }
+      
+    };
+    xmlhttp.open("GET","student-getuser.php?q="+json,true);
+    xmlhttp.send();
+    //end flash message
 }
 
 let leaveAndRemoveLocalStream = async () => {
@@ -199,24 +214,28 @@ let leaveAndRemoveLocalStream = async () => {
 let toggleMic = async (e) => {
     if (localTracks[0].muted){
         await localTracks[0].setMuted(false)
-        e.target.innerText = 'Mic on'
-        e.target.style.backgroundColor = 'cadetblue'
+        e.target.classList.add('bx-microphone')
+        e.target.classList.remove('bx-microphone-off')
+        e.target.style.color = '#ffffff'
     }else{
         await localTracks[0].setMuted(true)
-        e.target.innerText = 'Mic off'
-        e.target.style.backgroundColor = '#0a3c49'
+        e.target.classList.add('bx-microphone-off')
+        e.target.classList.remove('bx-microphone')
+        e.target.style.color = '#0a3c49'
     }
 }
 
 let toggleCamera = async (e) => {
     if(localTracks[1].muted){
         await localTracks[1].setMuted(false)
-        e.target.innerText = 'Camera on'
-        e.target.style.backgroundColor = 'cadetblue'
+        e.target.classList.add('bx-video')
+        e.target.classList.remove('bx-video-off')
+        e.target.style.color = '#ffffff'
     }else{
         await localTracks[1].setMuted(true)
-        e.target.innerText = 'Camera off'
-        e.target.style.backgroundColor = '#0a3c49'
+        e.target.classList.add('bx-video-off')
+        e.target.classList.remove('bx-video')
+        e.target.style.color = '#0a3c49'
     }
 }
 

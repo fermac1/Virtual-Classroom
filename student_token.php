@@ -42,8 +42,6 @@
 
         $remote_token = RtcTokenBuilder::buildTokenWithUid($appID, $appCertificate, $remote_channelName, $remote_uid, $role, $privilegeExpiredTs);
         // echo 'Token with int uid: ' . $token . PHP_EOL;
-    }else{
-        echo 'course has not been registered yet';
     }
 
 }else{

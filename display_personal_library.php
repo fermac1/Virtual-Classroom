@@ -19,7 +19,7 @@
     <div class="row dropdown">
        
     <div class='col-lg-11 col-md-10 col-sm-10 col-xs-3' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-            <input contenteditable type="text" id="file-row" name="file" value="<?php echo $fileName;?>"  readonly>
+            <input contenteditable type="text" id="file-row" name="file" value="<?php echo $fileName;?>" style="width: fit-content;"  readonly>
             
         </div>
 
