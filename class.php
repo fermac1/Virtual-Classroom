@@ -3,6 +3,7 @@
     include('session.php');
     include('user.php');
     include("teacher_token.php");
+    include("screen_share_token.php");
 
     if(isset($_SESSION['course_code'])){
         if(isset($_POST['json'])){
@@ -46,8 +47,8 @@
         <div id="msg">flash message</div>
         <div id="stream-controls">
             <button title="Leave Stream"><i class="bx bx-log-out" id="leave-btn"></i> </button>
-            <button><i class='bx bx-microphone' id="mic-btn"></i></button>
-            <button><i class='bx bx-video' id="camera-btn"></i></button>
+            <button title="Mic Off"><i class='bx bx-microphone' id="mic-btn"></i></button>
+            <button title="Camera Off"><i class='bx bx-video' id="camera-btn"></i></button>
             <button name="attendance" title="Attendance"><i class='bx bx-user-check' id="attendance"></i></button>   
             <button title="Share screen"><i class='bx bx-share-alt' id="share"></i></button>   
         </div>
@@ -64,6 +65,7 @@
     const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 let localTracks = []
 let remoteUsers = {}
+let localScreenTrack = []
 
 
 let joinAndDisplayLocalStream = async () => {
@@ -77,6 +79,7 @@ let joinAndDisplayLocalStream = async () => {
     let UID = await client.join('<?php echo $appID; ?>' , '<?php echo $channelName; ?>', '<?php echo $token;?>', <?php echo $uid;?>)    
 
     localTracks = await AgoraRTC.createMicrophoneAndCameraTracks() 
+    
 
     let player = `<div class="video-container" id="user-container-${UID}">
                         <div class="video-player" id="user-${UID}"></div>
@@ -241,20 +244,29 @@ let handleUserJoined = async (user, mediaType) => {
 }
 
 
+
 //share screen
 // async function startScreenCall() {
 //     const screenClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" , role: 'host'});
-//     await screenClient.join(');
+//     await screenClient.join()
     
   
 //     const screenTrack = await AgoraRTC.createScreenVideoTrack();
-//     // screenTrack[1].play(`user-${UID}`)
+//     screenTrack[1].play(`user-${UID}`)
 //     await screenClient.publish(screenTrack);
   
 //     return screenClient;
 //   }
 
 let share = async (user) => { 
+
+     
+
+    // let player = `<div class="video-container" id="user-container-${UID}">
+    //                     <div class="video-player" id="user-${UID}"></div>
+    //             </div>`
+    // document.getElementById('video-streams').insertAdjacentHTML('afterbegin', player)
+
     AgoraRTC.createScreenVideoTrack({
     // Set the encoder configurations. For details, see the API description.
     encoderConfig: "1080p_1",
@@ -262,6 +274,7 @@ let share = async (user) => {
     optimizationMode: "detail",
 }).then(localScreenTrack => {
   /** ... **/
+//   localScreenTrack[1].play(`user-${UID}`)
   console.log("Started sharing")
 
 })};
@@ -314,11 +327,13 @@ let leaveAndRemoveLocalStream = async () => {
 let toggleMic = async (e) => {
     if (localTracks[0].muted){
         await localTracks[0].setMuted(false)
+        $("#mic-btn").prop("title", "Mic Off")
         e.target.classList.add('bx-microphone')
         e.target.classList.remove('bx-microphone-off')
         e.target.style.color = '#ffffff'
     }else{
         await localTracks[0].setMuted(true)
+        $("#mic-btn").prop("title", "Mic On")
         e.target.classList.add('bx-microphone-off')
         e.target.classList.remove('bx-microphone')
         e.target.style.color = '#0a3c49'
@@ -330,13 +345,20 @@ let toggleCamera = async (e) => {
         await localTracks[1].setMuted(false)
         e.target.classList.add('bx-video')
         e.target.classList.remove('bx-video-off')
+        $("#camera-btn").prop("title", "Camera Off")
         e.target.style.color = '#ffffff'
     }else{
         await localTracks[1].setMuted(true)
         e.target.classList.add('bx-video-off')
         e.target.classList.remove('bx-video')
+        $("#camera-btn").prop("title", "Camera On")
         e.target.style.color = '#0a3c49'
     }
+}
+
+function toggleScreenShareBtn() {
+  $('#share').toggleClass('btn-danger');
+  $('#share').toggleClass('fa-share-square').toggleClass('fa-times-circle');
 }
 
     document.getElementById('leave-btn').addEventListener('click', leaveAndRemoveLocalStream)

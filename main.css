@@ -111,17 +111,17 @@ button{
     }
  }  */
 
- #video-streams{
-     grid-template-columns: 100%;
-     width: 100%;
-     height: fit-content;
-    }
-    
-    .video-container{
-        height: 90vh;
+ 
+ @media screen and (max-width:1400px){
+    #video-streams{
+        grid-template-columns: 100%;
         width: 100%;
-    }
-    
-@media screen and (max-width:1400px){
+        height: fit-content;
+       }
+       
+       .video-container{
+           height: 90vh;
+           width: 100%;
+       }
 
 }
